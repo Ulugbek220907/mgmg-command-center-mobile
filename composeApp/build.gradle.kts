@@ -90,7 +90,6 @@ kotlin {
 
 tasks.withType<Test> {
     systemProperty("file.encoding", "UTF-8")
-    systemProperty("java.io.tmpdir", "d:/gradle_home/tmp")
 }
 
 if (hasAndroidSdk) {
