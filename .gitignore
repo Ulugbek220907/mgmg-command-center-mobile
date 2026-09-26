@@ -1,0 +1,12 @@
+*.iml
+.gradle
+/build
+!/.github
+.idea
+.DS_Store
+build/
+*/build/
+*.hprof
+.cxx/
+local.properties
+.kotlin
