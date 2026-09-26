@@ -168,15 +168,32 @@ class CommandCenterRepository {
         }
     }
 
+    fun updateOrderHaltConditions(isStockRising: Boolean, isCashDropping: Boolean) {
+        _executiveNumbers.update {
+            it.copy(isStockRising = isStockRising, isCashDropping = isCashDropping)
+        }
+    }
+
     fun convertToCyrillicLegal(latinText: String): String {
+        // Standardize all Uzbek apostrophe variants including iOS smart apostrophe (’),
+        // left apostrophe (‘), official turned comma (ʻ), modifier apostrophe (ʼ), and grave accent (`)
+        val normalized = latinText
+            .replace('‘', '\'')
+            .replace('’', '\'')
+            .replace('ʻ', '\'')
+            .replace('ʼ', '\'')
+            .replace('`', '\'')
+
         val map = mapOf(
             "sh" to "ш", "Sh" to "Ш", "SH" to "Ш",
             "ch" to "ч", "Ch" to "Ч", "CH" to "Ч",
             "yo" to "ё", "Yo" to "Ё", "YO" to "Ё",
             "yu" to "ю", "Yu" to "Ю", "YU" to "Ю",
             "ya" to "я", "Ya" to "Я", "YA" to "Я",
-            "o'" to "ў", "O'" to "Ў", "o‘" to "ў", "O‘" to "Ў", "o`" to "ў",
-            "g'" to "ғ", "G'" to "Ғ", "g‘" to "ғ", "G‘" to "Ғ", "g`" to "ғ",
+            "ye" to "е", "Ye" to "Е", "YE" to "Е",
+            "ts" to "ц", "Ts" to "Ц", "TS" to "Ц",
+            "o'" to "ў", "O'" to "Ў",
+            "g'" to "ғ", "G'" to "Ғ",
             "a" to "а", "A" to "А",
             "b" to "б", "B" to "Б",
             "d" to "д", "D" to "Д",
@@ -202,8 +219,8 @@ class CommandCenterRepository {
             "y" to "й", "Y" to "Й",
             "z" to "з", "Z" to "З"
         )
-        var result = latinText
-        // Replace 2-char combos first
+        var result = normalized
+        // Replace multi-char combos first (sh, ch, yo, o', g', etc.)
         for ((k, v) in map.entries.sortedByDescending { it.key.length }) {
             result = result.replace(k, v)
         }

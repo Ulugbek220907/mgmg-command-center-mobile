@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+
+<html class="h-full bg-background" lang="uz"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Primus Command - Bosh sahifa</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;0,7..72,700;1,7..72,400&amp;family=Nunito+Sans:ital,opsz,wght@0,6..12,400;0,6..12,600;0,6..12,700;1,6..12,400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-tertiary": "#ffffff",
+            "on-error": "#ffffff",
+            "surface-container-lowest": "#ffffff",
+            "inverse-primary": "#8ecf9e",
+            "on-primary": "#ffffff",
+            "on-primary-fixed": "#002110",
+            "outline": "#74796e",
+            "tertiary-fixed": "#f8e0a8",
+            "on-surface-variant": "#4a4e4a",
+            "on-background": "#2e3230",
+            "tertiary-fixed-dim": "#dcc48e",
+            "tertiary-container": "#c4a66a",
+            "surface-container": "#f0ece4",
+            "on-tertiary-fixed": "#221a05",
+            "on-surface": "#2e3230",
+            "primary": "#4a7c59",
+            "on-secondary-fixed-variant": "#4a4538",
+            "secondary-container": "#f0e8db",
+            "surface-container-high": "#eae6de",
+            "on-tertiary-fixed-variant": "#554020",
+            "surface": "#faf6f0",
+            "on-secondary-container": "#5e5548",
+            "secondary-fixed-dim": "#d4ccbf",
+            "surface-bright": "#faf6f0",
+            "inverse-surface": "#2e3230",
+            "on-primary-container": "#d8f0de",
+            "tertiary": "#705c30",
+            "on-primary-fixed-variant": "#2a6038",
+            "primary-fixed": "#c8e8d0",
+            "on-secondary": "#ffffff",
+            "on-tertiary-container": "#554020",
+            "primary-container": "#78a886",
+            "surface-dim": "#dbd7cf",
+            "inverse-on-surface": "#f5f0e8",
+            "surface-container-highest": "#e4e0d8",
+            "on-secondary-fixed": "#1e1a13",
+            "primary-fixed-dim": "#8ecf9e",
+            "error-container": "#ffdad8",
+            "on-error-container": "#690005",
+            "background": "#faf6f0",
+            "surface-container-low": "#f5f1ea",
+            "secondary": "#6b6358",
+            "outline-variant": "#c4c8bc",
+            "surface-tint": "#4a7c59",
+            "error": "#b83230",
+            "secondary-fixed": "#f0e8db",
+            "surface-variant": "#e4e0d8"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.5rem",
+            "lg": "1rem",
+            "xl": "1.5rem",
+            "full": "9999px"
+          },
+          "fontFamily": {
+            "headline": ["Literata", "serif"],
+            "display": ["Literata", "serif"],
+            "body": ["Nunito Sans", "sans-serif"],
+            "label": ["Nunito Sans", "sans-serif"]
+          }
+        },
+      },
+    }
+  </script>
+</head>
+<body class="bg-background text-on-background font-body antialiased flex justify-center min-h-screen">
+<div class="w-full max-w-md bg-background flex flex-col min-h-screen relative pb-28">
+<!-- TopAppBar from Shared Components JSON -->
+<header class="bg-surface dark:bg-inverse-surface border-b border-outline-variant/30 shadow-sm flex justify-between items-center w-full px-4 py-3 max-w-md mx-auto sticky top-0 z-40">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center text-primary font-bold text-sm tracking-wide shadow-sm" title="Foydalanuvchi profili">
+          AP
+        </div>
+<div class="flex flex-col">
+<div class="flex items-center gap-2">
+<span class="font-headline font-bold text-lg text-primary dark:text-inverse-primary leading-tight">Primus Command</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-semibold bg-secondary-container text-on-secondary-container">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+              B2B Sotuv
+            </span>
+<span class="text-[10px] text-outline font-medium tracking-tight">EMJ-204</span>
+</div>
+</div>
+</div>
+<button aria-label="Bildirishnomalar" class="relative p-2 rounded-xl text-on-surface-variant hover:bg-surface-container dark:hover:bg-surface-container-high transition-colors active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-[24px]">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 rounded-full bg-error ring-2 ring-surface"></span>
+</button>
+</header>
+<!-- Main Content Canvas -->
+<main class="px-4 pt-4 flex flex-col gap-4">
+<!-- Greeting & Date Widget -->
+<section class="bg-surface-container-low rounded-xl p-4 shadow-sm border border-outline-variant/20 flex flex-col gap-2.5">
+<div class="flex justify-between items-start">
+<div>
+<p class="text-xs font-semibold text-secondary uppercase tracking-wider">Xush kelibsiz</p>
+<h1 class="font-headline font-bold text-xl text-on-surface leading-snug">Assalomu alaykum, Alisher</h1>
+</div>
+<span class="inline-flex items-center px-2 py-1 rounded-lg text-xs font-semibold bg-surface-container-highest text-on-surface-variant border border-outline-variant/30">
+            Primus Laundry
+          </span>
+</div>
+<div class="flex items-center justify-between pt-2 border-t border-outline-variant/20 text-xs text-on-surface-variant">
+<div class="flex items-center gap-1.5 font-medium">
+<span class="material-symbols-outlined text-primary text-base">calendar_today</span>
+<span>24-may, 2024, Juma</span>
+</div>
+<div class="flex items-center gap-1 text-[11px] font-semibold text-secondary">
+<span class="material-symbols-outlined text-xs">schedule</span>
+<span>16:42 • Asia/Tashkent</span>
+</div>
+</div>
+</section>
+<!-- Hero Action Card: Bugungi hisobot holati -->
+<section class="relative bg-surface rounded-xl p-5 border border-outline-variant/40 shadow-sm overflow-hidden flex flex-col gap-4">
+<div class="absolute -right-6 -bottom-6 w-28 h-28 bg-primary/5 rounded-full pointer-events-none blur-xl"></div>
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-2.5">
+<div class="w-10 h-10 rounded-xl bg-tertiary-fixed flex items-center justify-center text-on-tertiary-fixed shadow-sm">
+<span class="material-symbols-outlined text-[22px]">assignment_late</span>
+</div>
+<div>
+<h2 class="font-headline font-bold text-base text-on-surface">Bugungi hisobot holati</h2>
+<p class="text-xs text-secondary font-medium">Kundalik B2B sotuv hisoboti</p>
+</div>
+</div>
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-bold bg-tertiary-fixed text-on-tertiary-fixed">
+<span class="w-2 h-2 rounded-full bg-tertiary animate-pulse"></span>
+            Kutilmoqda
+          </span>
+</div>
+<!-- Window & Alert Timeline -->
+<div class="bg-surface-container-low rounded-xl p-3.5 border border-outline-variant/20 flex flex-col gap-2">
+<div class="flex items-center justify-between text-xs">
+<span class="text-on-surface-variant font-medium">Qabul qilish oralig‘i:</span>
+<span class="font-bold text-on-surface">16:00 dan 00:00 gacha</span>
+</div>
+<div class="w-full bg-surface-container-highest h-2 rounded-full overflow-hidden">
+<div class="bg-tertiary h-full rounded-full w-1/4"></div>
+</div>
+<div class="flex items-center justify-between text-[11px] text-secondary pt-0.5">
+<span class="flex items-center gap-1 text-tertiary font-semibold">
+<span class="material-symbols-outlined text-xs">alarm</span>
+              Eslatma: 17:00 da
+            </span>
+<span class="text-error font-medium">Topshirilmagan</span>
+</div>
+</div>
+<!-- Primary Action Button -->
+<a class="w-full bg-primary hover:bg-primary/90 text-on-primary py-3.5 px-4 rounded-xl font-bold text-sm tracking-wide flex items-center justify-center gap-2 shadow-sm transition-transform active:scale-95 text-center" href="#hisobot-yozish">
+<span class="material-symbols-outlined text-lg">edit_document</span>
+<span>Hisobot yozish</span>
+</a>
+</section>
+<!-- Inline Alert / AI Notice Widget -->
+<section class="bg-secondary-container/60 border border-outline-variant/40 rounded-xl p-3.5 flex items-start gap-3">
+<div class="w-8 h-8 rounded-lg bg-surface flex items-center justify-center text-primary shrink-0 shadow-xs border border-outline-variant/20">
+<span class="material-symbols-outlined text-lg">psychology</span>
+</div>
+<div class="flex-1">
+<div class="flex items-center gap-1.5 mb-0.5">
+<span class="text-xs font-bold text-on-surface">AI Nazorat Tizimi</span>
+<span class="text-[10px] bg-primary/10 text-primary px-1.5 py-0.2 rounded font-semibold">Avtomat</span>
+</div>
+<p class="text-xs text-on-surface-variant leading-relaxed">
+<strong class="font-semibold text-on-surface">Diqqat:</strong> Hisobot qisqa yoki noaniq bo‘lsa, AI tizimi 1 ta aniqlashtiruvchi savol beradi.
+          </p>
+</div>
+</section>
+<!-- Quick Status Section: Ruxsatnomalar (SOP) -->
+<section class="bg-surface-container-low rounded-xl p-4 border border-outline-variant/30 flex flex-col gap-3">
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-xl">verified</span>
+<h3 class="font-headline font-bold text-sm text-on-surface">Ruxsatnomalar (SOP)</h3>
+</div>
+<span class="px-2 py-0.5 rounded-full text-[11px] font-bold bg-primary-container/40 text-on-primary-fixed-variant">
+            1 ta ko‘rib chiqilmoqda
+          </span>
+</div>
+<!-- Latest application card -->
+<div class="bg-surface rounded-xl p-3 border border-outline-variant/20 flex flex-col gap-2">
+<div class="flex items-start justify-between">
+<div class="flex flex-col">
+<span class="text-xs text-on-surface font-bold">Oxirgi ariza: Ta'til ruxsati</span>
+<span class="text-[11px] text-secondary font-mono">EMJ-SOP-ADM-01</span>
+</div>
+<span class="inline-flex items-center gap-1 text-[11px] font-semibold text-tertiary bg-tertiary-fixed/40 px-2 py-0.5 rounded-md">
+<span class="material-symbols-outlined text-[14px]">hourglass_top</span>
+              Kutilmoqda
+            </span>
+</div>
+<p class="text-[11px] text-on-surface-variant">HR bo'limi ko'rib chiqish muddati: 24 soat ichida</p>
+</div>
+<button class="w-full bg-surface hover:bg-surface-container border border-outline-variant/50 text-primary py-2.5 px-3 rounded-xl font-bold text-xs flex items-center justify-center gap-1.5 transition-colors active:scale-95">
+<span class="material-symbols-outlined text-base">add_circle</span>
+<span>Yangi ariza berish</span>
+</button>
+</section>
+<!-- Director Brief Preview Widget -->
+<section class="bg-surface rounded-xl p-4 border border-outline-variant/30 shadow-sm flex flex-col gap-2.5 mb-2">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-primary"></div>
+<h3 class="font-headline font-bold text-sm text-on-surface">Direktor brifi &amp; Rejalar</h3>
+</div>
+<span class="text-[11px] text-secondary font-medium">Bugungi ko‘rsatma</span>
+</div>
+<div class="bg-surface-container-low rounded-lg p-3 border-l-2 border-primary text-xs leading-relaxed text-on-surface-variant">
+          "B2B tarmoqlari: Mehmonxonalar va yirik restoranlar segmentida yozgi mavsumiy buyurtmalarni qayta muvofiqlashtirishga e'tibor qarating."
+        </div>
+<div class="flex items-center justify-between text-[11px] text-outline pt-1">
+<span>Primus Boshqarmasi • 09:00</span>
+<span class="font-semibold text-primary">Tanishildi ✓</span>
+</div>
+</section>
+</main>
+<!-- BottomNavBar from Shared Components JSON -->
+<nav class="fixed bottom-0 w-full z-50 flex justify-around items-center px-2 py-2 max-w-md mx-auto left-0 right-0 bg-surface-container-lowest dark:bg-inverse-surface border-t border-outline-variant/20 shadow-sm font-label text-xs font-semibold">
+<!-- Tab 1: Bosh sahifa (Active) -->
+<a class="flex flex-col items-center justify-center bg-primary-container/30 dark:bg-primary-container/20 text-primary dark:text-inverse-primary rounded-xl px-3 py-1.5 font-bold active:scale-95 transition-transform" href="#bosh-sahifa">
+<span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+<span class="text-[11px] mt-0.5">Bosh sahifa</span>
+</a>
+<!-- Tab 2: Hisobot -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline px-3 py-1.5 hover:text-primary dark:hover:text-inverse-primary active:scale-95 transition-transform" href="#hisobot">
+<span class="material-symbols-outlined text-xl">bar_chart</span>
+<span class="text-[11px] mt-0.5">Hisobot</span>
+</a>
+<!-- Tab 3: Ruxsatnomalar -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline px-3 py-1.5 hover:text-primary dark:hover:text-inverse-primary active:scale-95 transition-transform" href="#ruxsatnomalar">
+<span class="material-symbols-outlined text-xl">verified</span>
+<span class="text-[11px] mt-0.5">Ruxsatnomalar</span>
+</a>
+<!-- Tab 4: Sozlamalar -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline px-3 py-1.5 hover:text-primary dark:hover:text-inverse-primary active:scale-95 transition-transform" href="#sozlamalar">
+<span class="material-symbols-outlined text-xl">settings</span>
+<span class="text-[11px] mt-0.5">Sozlamalar</span>
+</a>
+</nav>
+</div>
+</body></html>

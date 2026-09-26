@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+
+<html class="light" lang="uz"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MGMG Command Center - Kunlik hisobot</title>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts: Literata (Headlines) & Nunito Sans (Body/Labels) -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;0,7..72,700;1,7..72,400&amp;family=Nunito+Sans:ital,wght@0,400;0,600;0,700;1,400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-tertiary": "#ffffff",
+            "on-error": "#ffffff",
+            "surface-container-lowest": "#ffffff",
+            "inverse-primary": "#8ecf9e",
+            "on-primary": "#ffffff",
+            "on-primary-fixed": "#002110",
+            "outline": "#74796e",
+            "tertiary-fixed": "#f8e0a8",
+            "on-surface-variant": "#4a4e4a",
+            "on-background": "#2e3230",
+            "tertiary-fixed-dim": "#dcc48e",
+            "tertiary-container": "#c4a66a",
+            "surface-container": "#f0ece4",
+            "on-tertiary-fixed": "#221a05",
+            "on-surface": "#2e3230",
+            "primary": "#4a7c59",
+            "on-secondary-fixed-variant": "#4a4538",
+            "secondary-container": "#f0e8db",
+            "surface-container-high": "#eae6de",
+            "on-tertiary-fixed-variant": "#554020",
+            "surface": "#faf6f0",
+            "on-secondary-container": "#5e5548",
+            "secondary-fixed-dim": "#d4ccbf",
+            "surface-bright": "#faf6f0",
+            "inverse-surface": "#2e3230",
+            "on-primary-container": "#d8f0de",
+            "tertiary": "#705c30",
+            "on-primary-fixed-variant": "#2a6038",
+            "primary-fixed": "#c8e8d0",
+            "on-secondary": "#ffffff",
+            "on-tertiary-container": "#554020",
+            "primary-container": "#78a886",
+            "surface-dim": "#dbd7cf",
+            "inverse-on-surface": "#f5f0e8",
+            "surface-container-highest": "#e4e0d8",
+            "on-secondary-fixed": "#1e1a13",
+            "primary-fixed-dim": "#8ecf9e",
+            "error-container": "#ffdad8",
+            "on-error-container": "#690005",
+            "background": "#faf6f0",
+            "surface-container-low": "#f5f1ea",
+            "secondary": "#6b6358",
+            "outline-variant": "#c4c8bc",
+            "surface-tint": "#4a7c59",
+            "error": "#b83230",
+            "secondary-fixed": "#f0e8db",
+            "surface-variant": "#e4e0d8"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.5rem",
+            "lg": "1rem",
+            "xl": "1.5rem",
+            "full": "9999px"
+          },
+          "fontFamily": {
+            "headline": ["Literata", "serif"],
+            "display": ["Literata", "serif"],
+            "body": ["Nunito Sans", "sans-serif"],
+            "label": ["Nunito Sans", "sans-serif"]
+          }
+        },
+      },
+    }
+  </script>
+</head>
+<body class="bg-background text-on-background font-body min-h-screen antialiased flex flex-col justify-between selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- Mobile Wrapper Frame -->
+<div class="w-full max-w-md mx-auto flex flex-col min-h-screen relative pb-24 shadow-sm bg-background">
+<!-- Top App Bar (Shared Components standard adhering to JSON) -->
+<header class="bg-surface sticky top-0 z-40 w-full px-4 py-3 max-w-md mx-auto flex justify-between items-center transition-colors">
+<div class="flex items-center gap-2.5">
+<button aria-label="Orqaga qaytish" class="w-9 h-9 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-container active:scale-95 transition-all" type="button">
+<span class="material-symbols-outlined text-[22px]">arrow_back</span>
+</button>
+<div>
+<h1 class="font-headline font-bold text-lg text-primary tracking-tight leading-none">Kunlik hisobot</h1>
+<p class="font-label text-[11px] text-secondary mt-0.5 tracking-wide">24-may, 2024 (Asia/Tashkent)</p>
+</div>
+</div>
+<div class="flex items-center gap-1.5">
+<button aria-label="Bildirishnomalar" class="w-9 h-9 rounded-full flex items-center justify-center text-primary hover:bg-surface-container active:scale-95 transition-all relative" type="button">
+<span class="material-symbols-outlined text-[22px]">notifications</span>
+<span class="w-2 h-2 rounded-full bg-tertiary absolute top-2 right-2 ring-2 ring-surface"></span>
+</button>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="px-4 pt-2 pb-6 space-y-4 flex-1">
+<!-- Submission Window Banner -->
+<section class="bg-surface-container-low rounded-xl p-3.5 border border-outline-variant/40 flex items-start gap-3 shadow-[0_4px_20px_rgba(46,50,48,0.04)]">
+<div class="p-2 rounded-lg bg-tertiary-container/30 text-tertiary flex-shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">schedule</span>
+</div>
+<div class="flex-1 text-xs">
+<div class="flex items-center justify-between">
+<span class="font-bold text-on-surface tracking-tight">Topshirish qoidalari</span>
+<span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-primary-container/20 text-primary">Faol vaqt</span>
+</div>
+<p class="text-on-surface-variant mt-1 leading-relaxed">
+            Hisobot qabul qilish: <span class="font-bold text-on-surface">16:00 – 00:00 gacha</span>. Yarim tundan keyin qabul qilinmaydi.
+          </p>
+</div>
+</section>
+<!-- Active Form Section -->
+<section class="bg-surface-container-lowest rounded-xl p-4 border border-outline-variant/30 shadow-[0_4px_20px_rgba(46,50,48,0.05)] space-y-3">
+<div class="flex items-center justify-between">
+<label class="font-headline font-bold text-sm text-on-surface flex items-center gap-1.5" for="daily-summary">
+<span>Bugun nimalar bajardingiz?</span>
+<span class="text-error text-xs">*</span>
+</label>
+<div class="flex items-center gap-1 text-[11px] font-semibold text-primary" id="status-indicator">
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+<span>Tahrirlanmoqda</span>
+</div>
+</div>
+<div class="relative">
+<textarea class="w-full bg-surface-container-low text-on-surface text-sm rounded-lg p-3 border-0 ring-1 ring-outline-variant/40 focus:ring-2 focus:ring-primary focus:bg-surface-container-lowest transition-all placeholder:text-outline/70 resize-none font-body leading-relaxed outline-none" id="daily-summary" maxlength="1000" oninput="document.getElementById('char-count').innerText = this.value.length" placeholder="Bajarilgan asosiy ishlar, uchrashuvlar, natijalar va to‘siqlarni qisqacha bayon qiling..." rows="5">MGMG Command moduli bo‘yicha API integratsiyasi yakunlandi. B2B korporativ hamkorlar bilan 3 ta uchrashuv o‘tkazildi. To‘lov gateway testi muvaffaqiyatli yakunlandi.</textarea>
+</div>
+<div class="flex items-center justify-between text-xs text-on-surface-variant pt-0.5">
+<span class="text-[11px] text-secondary">Tavsiya: Kamida 50 ta belgi</span>
+<div class="font-label font-semibold text-[11px]">
+<span class="text-primary font-bold" id="char-count">148</span> / 1000 belgi
+          </div>
+</div>
+<button class="w-full py-3 px-4 bg-primary text-on-primary rounded-xl font-headline font-bold text-sm tracking-wide shadow-sm hover:opacity-95 active:scale-[0.98] transition-all flex items-center justify-center gap-2" type="button">
+<span>Hisobotni yuborish</span>
+<span class="material-symbols-outlined text-[18px]">send</span>
+</button>
+</section>
+<!-- AI Follow-up Question Card (Inline preview of business rule) -->
+<section class="bg-surface-container-low rounded-xl p-4 border border-tertiary-container/60 shadow-[0_4px_20px_rgba(46,50,48,0.06)] relative overflow-hidden">
+<div class="absolute top-0 right-0 w-24 h-24 bg-tertiary-fixed/30 rounded-bl-full pointer-events-none"></div>
+<div class="flex items-start gap-2.5 mb-2.5">
+<div class="w-8 h-8 rounded-lg bg-tertiary text-on-tertiary flex items-center justify-center flex-shrink-0 shadow-sm">
+<span class="material-symbols-outlined text-[19px]" style="font-variation-settings: 'FILL' 1;">smart_toy</span>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<span class="font-headline font-bold text-xs text-tertiary">AI aniqlashtiruvchi savoli</span>
+<span class="px-2 py-0.2 rounded-full text-[9px] font-bold bg-secondary-container text-on-secondary-container">Faqat 1 marta beriladi</span>
+</div>
+<p class="font-headline text-xs font-semibold text-on-surface mt-1.5 leading-snug">
+              “B2B mijozlar bilan tuzilgan shartnomalar bo‘yicha to‘lov sanalari aniqlandimi?”
+            </p>
+</div>
+</div>
+<div class="mt-3 space-y-2">
+<div class="relative">
+<input class="w-full bg-surface text-on-surface text-xs rounded-lg px-3 py-2.5 border-0 ring-1 ring-outline-variant/50 focus:ring-2 focus:ring-primary focus:bg-surface-container-lowest outline-none transition-all placeholder:text-outline/70" placeholder="Tezkor javob yozing..." type="text" value="Ha, 28-may sanasiga to‘lov tasdiqlandi"/>
+</div>
+<button class="w-full py-2 px-3 bg-secondary text-on-secondary rounded-lg font-label font-bold text-xs tracking-wide hover:opacity-95 active:scale-[0.98] transition-all flex items-center justify-center gap-1.5 shadow-sm" type="button">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+<span>Javobni tasdiqlash</span>
+</button>
+</div>
+</section>
+<!-- Last 14 Days History Section -->
+<section class="space-y-2.5 pt-1">
+<div class="flex items-center justify-between px-0.5">
+<h2 class="font-headline font-bold text-sm text-on-surface">Oxirgi 14 kunlik hisobotlar</h2>
+<span class="text-[11px] font-bold text-primary flex items-center gap-0.5 cursor-pointer">
+            Barchasi
+            <span class="material-symbols-outlined text-[14px]">chevron_right</span>
+</span>
+</div>
+<div class="space-y-2">
+<!-- Item 1: Qabul qilindi -->
+<article class="bg-surface-container-lowest rounded-xl p-3.5 border border-outline-variant/20 shadow-[0_2px_10px_rgba(46,50,48,0.03)] hover:bg-surface-container-low transition-colors">
+<div class="flex items-center justify-between mb-1.5">
+<span class="font-label font-bold text-xs text-on-surface">23-may — 17:42</span>
+<span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-primary-fixed text-on-primary-fixed flex items-center gap-1">
+<span class="w-1 h-1 rounded-full bg-primary"></span>
+                Qabul qilindi
+              </span>
+</div>
+<p class="text-xs text-on-surface-variant line-clamp-2 leading-relaxed">
+              Hisobot topshirildi: Dizayn tizimi komponentlari ko‘rib chiqildi, yangi backend endpointlari sinovdan o‘tkazildi va tasdiqlandi.
+            </p>
+</article>
+<!-- Item 2: AI bilan to‘ldirildi -->
+<article class="bg-surface-container-lowest rounded-xl p-3.5 border border-outline-variant/20 shadow-[0_2px_10px_rgba(46,50,48,0.03)] hover:bg-surface-container-low transition-colors">
+<div class="flex items-center justify-between mb-1.5">
+<span class="font-label font-bold text-xs text-on-surface">22-may — 19:15</span>
+<span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-secondary-fixed text-on-secondary-fixed flex items-center gap-1">
+<span class="w-1 h-1 rounded-full bg-secondary"></span>
+                AI bilan to‘ldirildi
+              </span>
+</div>
+<p class="text-xs text-on-surface-variant line-clamp-2 leading-relaxed">
+              Mijozlar bilan aloqa bo‘yicha qo‘shimcha ma’lumotlar AI tavsiyasi bilan sinxronlashtirildi va tizimga muvaffaqiyatli kiritildi.
+            </p>
+</article>
+<!-- Item 3: Topshirilmadi -->
+<article class="bg-surface-container-lowest rounded-xl p-3.5 border border-outline-variant/20 shadow-[0_2px_10px_rgba(46,50,48,0.03)] hover:bg-surface-container-low transition-colors">
+<div class="flex items-center justify-between mb-1.5">
+<span class="font-label font-bold text-xs text-on-surface">21-may — Muddat o‘tgan</span>
+<span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-tertiary-fixed text-on-tertiary-fixed flex items-center gap-1">
+<span class="w-1 h-1 rounded-full bg-tertiary"></span>
+                Topshirilmadi
+              </span>
+</div>
+<p class="text-xs text-secondary italic line-clamp-1 leading-relaxed">
+              Ushbu kunda hisobot yozilmagan yoki 00:00 dan kechikkan.
+            </p>
+</article>
+<!-- Item 4: Qabul qilindi -->
+<article class="bg-surface-container-lowest rounded-xl p-3.5 border border-outline-variant/20 shadow-[0_2px_10px_rgba(46,50,48,0.03)] hover:bg-surface-container-low transition-colors">
+<div class="flex items-center justify-between mb-1.5">
+<span class="font-label font-bold text-xs text-on-surface">20-may — 18:04</span>
+<span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-primary-fixed text-on-primary-fixed flex items-center gap-1">
+<span class="w-1 h-1 rounded-full bg-primary"></span>
+                Qabul qilindi
+              </span>
+</div>
+<p class="text-xs text-on-surface-variant line-clamp-2 leading-relaxed">
+              Bozor tahlili va haftalik rejalashtirish majlisi natijalari qayd etildi. Barcha KPI ko‘rsatkichlari yangilandi.
+            </p>
+</article>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation Bar (Adhering explicitly to Shared Components JSON, 'Hisobot' active) -->
+<nav class="fixed bottom-0 w-full z-50 flex justify-around items-center px-2 py-2 max-w-md mx-auto left-0 right-0 bg-surface-container-lowest shadow-sm">
+<!-- Tab 1: Bosh sahifa -->
+<button class="flex flex-col items-center justify-center text-on-surface-variant px-3 py-1.5 hover:text-primary active:scale-95 transition-transform" type="button">
+<span class="material-symbols-outlined text-[20px]">dashboard</span>
+<span class="font-label text-xs font-semibold mt-0.5">Bosh sahifa</span>
+</button>
+<!-- Tab 2: Hisobot (ACTIVE) -->
+<button class="flex flex-col items-center justify-center bg-primary-container/30 text-primary rounded-xl px-3 py-1.5 font-bold active:scale-95 transition-transform" type="button">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">bar_chart</span>
+<span class="font-label text-xs font-semibold mt-0.5">Hisobot</span>
+</button>
+<!-- Tab 3: Ruxsatnomalar -->
+<button class="flex flex-col items-center justify-center text-on-surface-variant px-3 py-1.5 hover:text-primary active:scale-95 transition-transform" type="button">
+<span class="material-symbols-outlined text-[20px]">verified</span>
+<span class="font-label text-xs font-semibold mt-0.5">Ruxsatnomalar</span>
+</button>
+<!-- Tab 4: Sozlamalar -->
+<button class="flex flex-col items-center justify-center text-on-surface-variant px-3 py-1.5 hover:text-primary active:scale-95 transition-transform" type="button">
+<span class="material-symbols-outlined text-[20px]">settings</span>
+<span class="font-label text-xs font-semibold mt-0.5">Sozlamalar</span>
+</button>
+</nav>
+</div>
+</body></html>

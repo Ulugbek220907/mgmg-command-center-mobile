@@ -26,7 +26,9 @@ import com.mgm.commandcenter.theme.*
 fun DashboardScreen(
     numbers: ExecutiveFiveNumbers,
     financial: FinancialHealthSummary,
-    onBackClick: () -> Unit
+    onBackClick: () -> Unit,
+    onSetRealizationCoeff: (Double) -> Unit = { CommandCenterRepository.instance.setRealizationCoefficient(it) },
+    onToggleHaltConditions: (Boolean, Boolean) -> Unit = { rising, dropping -> CommandCenterRepository.instance.updateOrderHaltConditions(rising, dropping) }
 ) {
     var coeff by remember { mutableStateOf(financial.realizationCoeff) }
     val scrollState = rememberScrollState()
@@ -71,7 +73,7 @@ fun DashboardScreen(
                     value = "184.2 млн сўм",
                     subtext = "Банк + Нақд",
                     modifier = Modifier.weight(1f),
-                    color = ForestGreen
+                    color = if (numbers.isCashDropping) TerraError else ForestGreen
                 )
                 MetricCard(
                     title = "2. Кечаги сотув",
@@ -88,7 +90,7 @@ fun DashboardScreen(
                     value = "$486,733",
                     subtext = "256 кунлик мол (1.43х)",
                     modifier = Modifier.weight(1f),
-                    color = WarmAmber
+                    color = if (numbers.isStockRising) TerraError else WarmAmber
                 )
                 MetricCard(
                     title = "4. Мижоз қарзи",
@@ -109,36 +111,85 @@ fun DashboardScreen(
         }
 
         // 2. Strict Stop-Rule Card (A2 Agent check)
+        val isHaltActive = numbers.isOrderHaltAlertActive
         Card(
             shape = RoundedCornerShape(14.dp),
-            colors = CardDefaults.cardColors(containerColor = SurfaceContainerLow),
-            border = CardDefaults.outlinedCardBorder().copy(brush = androidx.compose.ui.graphics.SolidColor(TerraOutlineVariant.copy(alpha = 0.3f)))
+            colors = CardDefaults.cardColors(
+                containerColor = if (isHaltActive) TerraErrorContainer.copy(alpha = 0.7f) else SurfaceContainerLow
+            ),
+            border = CardDefaults.outlinedCardBorder().copy(
+                brush = androidx.compose.ui.graphics.SolidColor(
+                    if (isHaltActive) TerraError else TerraOutlineVariant.copy(alpha = 0.3f)
+                )
+            )
         ) {
-            Column(modifier = Modifier.padding(12.dp)) {
+            Column(modifier = Modifier.padding(14.dp)) {
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Box(
                         modifier = Modifier
-                            .size(8.dp)
+                            .size(10.dp)
                             .clip(CircleShape)
-                            .background(ForestGreen)
+                            .background(if (isHaltActive) TerraError else ForestGreen)
                     )
-                    Spacer(modifier = Modifier.width(6.dp))
-                    Text("A2 Қатъий хавф қоидаси ҳолати:", fontWeight = FontWeight.Bold, fontSize = 12.sp, color = WarmCharcoal)
+                    Spacer(modifier = Modifier.width(8.dp))
+                    Text(
+                        text = if (isHaltActive) "A2 ҚАТЪИЙ ХАВФ ҚОИДАСИ: ТЎХТАТИШ ФАОЛ!" else "A2 Қатъий хавф қоидаси ҳолати:",
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 12.sp,
+                        color = if (isHaltActive) TerraError else WarmCharcoal
+                    )
                 }
-                Spacer(modifier = Modifier.height(4.dp))
-                Text(
-                    text = "«Захира ошиб, касса тушса -> барча янги буюртма тўхтайди.»",
-                    fontSize = 11.sp,
-                    color = SecondaryColor
-                )
                 Spacer(modifier = Modifier.height(6.dp))
+                Text(
+                    text = if (isHaltActive)
+                        "«ДИҚҚАТ: Захира ошиб, касса тушди! Барча янги таъминот буюртмалари ТЎХТАТИЛДИ!»"
+                    else
+                        "«Захира ошиб, касса тушса -> барча янги буюртма тўхтайди.»",
+                    fontSize = 11.sp,
+                    fontWeight = if (isHaltActive) FontWeight.Bold else FontWeight.Normal,
+                    color = if (isHaltActive) TerraError else SecondaryColor
+                )
+                Spacer(modifier = Modifier.height(8.dp))
                 Box(
                     modifier = Modifier
                         .clip(RoundedCornerShape(8.dp))
-                        .background(PrimaryFixed)
+                        .background(if (isHaltActive) TerraError else PrimaryFixed)
                         .padding(horizontal = 8.dp, vertical = 4.dp)
                 ) {
-                    Text("✓ Ҳолат нормал: Хавф аниқланмади", fontSize = 10.sp, fontWeight = FontWeight.Bold, color = ForestGreen)
+                    Text(
+                        text = if (isHaltActive) "⚠️ ХАВФ АНИҚЛАНДИ: Буюртмалар музлатилди" else "✓ Ҳолат нормал: Хавф аниқланмади",
+                        fontSize = 10.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = if (isHaltActive) Color.White else ForestGreen
+                    )
+                }
+
+                Spacer(modifier = Modifier.height(10.dp))
+                HorizontalDivider(color = TerraOutlineVariant.copy(alpha = 0.3f))
+                Spacer(modifier = Modifier.height(8.dp))
+
+                // Simulation controls for testing the audit rule
+                Text("A2 қоидасини симуляция қилиш:", fontSize = 10.sp, color = TerraOutline, fontWeight = FontWeight.Bold)
+                Spacer(modifier = Modifier.height(4.dp))
+                Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                    FilterChip(
+                        selected = numbers.isStockRising,
+                        onClick = { onToggleHaltConditions(!numbers.isStockRising, numbers.isCashDropping) },
+                        label = { Text("Захира ошмоқда (${if (numbers.isStockRising) "Ҳа" else "Йўқ"})", fontSize = 10.sp) },
+                        colors = FilterChipDefaults.filterChipColors(
+                            selectedContainerColor = TerraErrorContainer,
+                            selectedLabelColor = TerraError
+                        )
+                    )
+                    FilterChip(
+                        selected = numbers.isCashDropping,
+                        onClick = { onToggleHaltConditions(numbers.isStockRising, !numbers.isCashDropping) },
+                        label = { Text("Касса тушмоқда (${if (numbers.isCashDropping) "Ҳа" else "Йўқ"})", fontSize = 10.sp) },
+                        colors = FilterChipDefaults.filterChipColors(
+                            selectedContainerColor = TerraErrorContainer,
+                            selectedLabelColor = TerraError
+                        )
+                    )
                 }
             }
         }
@@ -164,7 +215,7 @@ fun DashboardScreen(
                     value = coeff.toFloat(),
                     onValueChange = {
                         coeff = it.toDouble()
-                        CommandCenterRepository.instance.setRealizationCoefficient(coeff)
+                        onSetRealizationCoeff(coeff)
                     },
                     valueRange = 0.1f..1.0f,
                     steps = 8,

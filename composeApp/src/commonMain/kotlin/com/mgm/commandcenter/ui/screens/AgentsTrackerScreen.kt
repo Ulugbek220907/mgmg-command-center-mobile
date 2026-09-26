@@ -27,7 +27,10 @@ import com.mgm.commandcenter.theme.*
 @Composable
 fun AgentsTrackerScreen(
     agents: List<Agent>,
-    onBackClick: () -> Unit
+    onBackClick: () -> Unit,
+    onUpdateAgentStatus: (String, AgentStatus) -> Boolean = { code, status ->
+        CommandCenterRepository.instance.updateAgentStatus(code, status)
+    }
 ) {
     var searchQuery by remember { mutableStateOf("") }
     var selectedBlock by remember { mutableStateOf("Hammasi") }
@@ -110,7 +113,28 @@ fun AgentsTrackerScreen(
 
         if (ruleViolationMessage != null) {
             Spacer(modifier = Modifier.height(4.dp))
-            Text(ruleViolationMessage!!, color = TerraError, fontSize = 11.sp, fontWeight = FontWeight.Bold)
+            Card(
+                colors = CardDefaults.cardColors(containerColor = TerraErrorContainer),
+                shape = RoundedCornerShape(8.dp),
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Row(
+                    modifier = Modifier.fillMaxWidth().padding(horizontal = 10.dp, vertical = 6.dp),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Text(
+                        text = "⚠️ $ruleViolationMessage",
+                        color = TerraError,
+                        fontSize = 11.sp,
+                        fontWeight = FontWeight.Bold,
+                        modifier = Modifier.weight(1f)
+                    )
+                    IconButton(onClick = { ruleViolationMessage = null }, modifier = Modifier.size(24.dp)) {
+                        Text("✕", fontSize = 12.sp, color = TerraError, fontWeight = FontWeight.Bold)
+                    }
+                }
+            }
         }
 
         Spacer(modifier = Modifier.height(8.dp))
@@ -194,7 +218,7 @@ fun AgentsTrackerScreen(
                 AgentCardItem(
                     agent = agent,
                     onStatusChange = { newStatus ->
-                        val success = CommandCenterRepository.instance.updateAgentStatus(agent.code, newStatus)
+                        val success = onUpdateAgentStatus(agent.code, newStatus)
                         if (!success) {
                             ruleViolationMessage = "Қоида бузилиш: Бир вақтда кўпи билан 2 та агент қура оласиз!"
                         } else {
@@ -365,7 +389,7 @@ private fun AgentCardItem(
             ) {
                 Text("Ҳолат:", fontSize = 10.sp, color = SecondaryColor)
                 Row(horizontalArrangement = Arrangement.spacedBy(4.dp)) {
-                    AgentStatus.values().forEach { st ->
+                    AgentStatus.entries.forEach { st ->
                         val isCurr = st == agent.status
                         Box(
                             modifier = Modifier

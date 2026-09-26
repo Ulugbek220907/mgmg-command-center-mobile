@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+
+<html class="h-full bg-background" lang="uz"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MGMG Command tizimiga kirish | Primus Command</title>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts: Literata & Nunito Sans -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,400..800;1,7..72,400..700&amp;family=Nunito+Sans:ital,opsz,wght@0,6..12,300..800;1,6..12,300..700&amp;family=JetBrains+Mono:wght@500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config -->
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "on-secondary": "#ffffff",
+            "on-secondary-container": "#5e5548",
+            "secondary-container": "#f0e8db",
+            "outline-variant": "#c4c8bc",
+            "primary-fixed": "#c8e8d0",
+            "error": "#b83230",
+            "surface-tint": "#4a7c59",
+            "primary-container": "#78a886",
+            "surface-container-low": "#f5f1ea",
+            "on-tertiary-fixed-variant": "#554020",
+            "tertiary-fixed": "#f8e0a8",
+            "secondary": "#6b6358",
+            "primary-fixed-dim": "#8ecf9e",
+            "on-tertiary-fixed": "#221a05",
+            "on-primary-container": "#d8f0de",
+            "on-secondary-fixed": "#1e1a13",
+            "secondary-fixed": "#f0e8db",
+            "outline": "#74796e",
+            "on-surface-variant": "#4a4e4a",
+            "secondary-fixed-dim": "#d4ccbf",
+            "surface-variant": "#e4e0d8",
+            "surface-dim": "#dbd7cf",
+            "primary": "#4a7c59",
+            "inverse-on-surface": "#f5f0e8",
+            "on-background": "#2e3230",
+            "on-primary-fixed-variant": "#2a6038",
+            "on-secondary-fixed-variant": "#4a4538",
+            "tertiary-fixed-dim": "#dcc48e",
+            "surface-container-high": "#eae6de",
+            "on-tertiary": "#ffffff",
+            "tertiary": "#705c30",
+            "tertiary-container": "#c4a66a",
+            "on-error-container": "#690005",
+            "surface-container-highest": "#e4e0d8",
+            "inverse-surface": "#2e3230",
+            "surface-container-lowest": "#ffffff",
+            "background": "#faf6f0",
+            "on-surface": "#2e3230",
+            "error-container": "#ffdad8",
+            "surface-container": "#f0ece4",
+            "on-tertiary-container": "#554020",
+            "on-error": "#ffffff",
+            "inverse-primary": "#8ecf9e",
+            "surface-bright": "#faf6f0",
+            "on-primary": "#ffffff",
+            "on-primary-fixed": "#002110",
+            "surface": "#faf6f0"
+          },
+          borderRadius: {
+            "DEFAULT": "0.5rem",
+            "lg": "1rem",
+            "xl": "1.5rem",
+            "full": "9999px"
+          },
+          fontFamily: {
+            headline: ["Literata", "serif"],
+            display: ["Literata", "serif"],
+            body: ["Nunito Sans", "sans-serif"],
+            label: ["Nunito Sans", "sans-serif"],
+            mono: ["JetBrains Mono", "monospace"]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .material-symbols-fill {
+      font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="min-h-full font-body bg-background text-on-surface antialiased flex flex-col justify-between selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- Mobile Container Constraint -->
+<main class="w-full max-w-md mx-auto min-h-screen px-5 pt-8 pb-10 flex flex-col justify-between">
+<!-- Top Branding & Header Area -->
+<header class="w-full space-y-6">
+<!-- Top Bar Badging & Network Status -->
+<div class="flex items-center justify-between">
+<div class="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-surface-container border border-outline-variant/40 shadow-xs">
+<span class="flex h-2 w-2 relative">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+</span>
+<span class="font-label text-xs font-bold tracking-tight text-on-surface">MGMG Node • Primus</span>
+</div>
+<div class="flex items-center gap-1.5 text-secondary text-xs font-semibold px-2.5 py-1 bg-surface-container-low rounded-lg border border-outline-variant/30">
+<span class="material-symbols-outlined text-sm" data-icon="lock">lock</span>
+<span class="font-label tracking-wide">SSL v3 Encrypted</span>
+</div>
+</div>
+<!-- Icon Crest & Title -->
+<div class="space-y-3 pt-2">
+<div class="w-14 h-14 rounded-2xl bg-surface-container flex items-center justify-center border border-outline-variant/30 text-primary shadow-sm">
+<span class="material-symbols-outlined text-3xl material-symbols-fill" data-icon="security" style="font-variation-settings: 'FILL' 1;">security</span>
+</div>
+<div class="space-y-1.5">
+<h1 class="font-headline text-2xl font-bold text-on-surface tracking-tight leading-snug">
+            MGMG Command tizimiga kirish
+          </h1>
+<p class="font-body text-sm text-secondary leading-relaxed">
+            Bir martalik taklif kodi orqali autentifikatsiya
+          </p>
+</div>
+</div>
+</header>
+<!-- Main Authentication Bento/Card -->
+<section class="my-6 space-y-4">
+<!-- Form Card Container -->
+<div class="bg-surface-container-lowest p-6 rounded-2xl border border-outline-variant/30 shadow-[0_4px_24px_rgba(46,50,48,0.05)] space-y-5">
+<!-- Input Group -->
+<div class="space-y-2">
+<div class="flex justify-between items-center">
+<label class="font-label text-xs font-bold text-on-surface tracking-wide flex items-center gap-1" for="invite-code">
+              Taklif kodi (Invite Code) <span class="text-error font-mono">*</span>
+</label>
+<span class="text-[11px] font-mono font-medium text-tertiary bg-secondary-container px-2 py-0.5 rounded-full">
+              Format: PRM-XXXX-XXXX
+            </span>
+</div>
+<div class="relative flex items-center">
+<input class="w-full font-mono text-base font-bold tracking-wider px-4 py-3.5 bg-background rounded-xl border border-primary/50 text-on-surface focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all duration-150 uppercase placeholder:text-outline/40 shadow-inner" id="invite-code" maxlength="13" name="invite_code" placeholder="PRM-XXXX-XXXX" type="text" value="PRM-8492-TX09"/>
+<div class="absolute right-3.5 flex items-center gap-1.5">
+<span class="w-6 h-6 rounded-full bg-primary-fixed flex items-center justify-center text-primary" title="Kod tekshirildi">
+<span class="material-symbols-outlined text-base font-bold" data-icon="check">check</span>
+</span>
+</div>
+</div>
+<p class="font-label text-xs text-secondary leading-relaxed pt-1">
+            Ushbu kodni Telegram MGMG Admin boti (<span class="font-mono text-primary font-semibold">@mgmg_admin_bot</span>) orqali olishingiz mumkin.
+          </p>
+</div>
+<!-- Telegram Retrieval Link Button -->
+<a class="w-full flex items-center justify-center gap-2.5 py-2.5 px-4 rounded-xl bg-surface-container-low hover:bg-surface-container active:scale-[0.99] text-primary font-label text-xs font-bold transition-all border border-outline-variant/40" href="https://t.me/mgmg_admin_bot" rel="noopener noreferrer" target="_blank">
+<span class="material-symbols-outlined text-lg" data-icon="send">send</span>
+<span>Telegram orqali kod olish</span>
+</a>
+<!-- Validity & Key Notice Callout -->
+<div class="p-3.5 rounded-xl bg-surface-container/60 border border-outline-variant/30 flex items-start gap-3">
+<span class="material-symbols-outlined text-tertiary text-lg shrink-0 mt-0.5" data-icon="timer">timer</span>
+<div class="space-y-1">
+<h4 class="font-label text-xs font-bold text-on-surface">15 daqiqalik amal qilish muddati</h4>
+<p class="font-body text-xs text-on-surface-variant leading-relaxed">
+              Kodingiz 15 daqiqa davomida amal qiladi. Kod faqat bir martalik kirish uchun mo'ljallangan va qurilma kalitlar zanjirida (Keychain) xavfsiz saqlanadi.
+            </p>
+</div>
+</div>
+<!-- Interactive Notice/Status Validation -->
+<div class="p-3 rounded-xl bg-secondary-container/40 border border-outline-variant/20 flex items-center justify-between">
+<div class="flex items-center gap-2 text-xs text-secondary font-medium">
+<span class="material-symbols-outlined text-sm text-tertiary" data-icon="info">info</span>
+<span>Kod yaroqsiz yoki muddati o'tgan bo'lsa:</span>
+</div>
+<button class="text-xs font-bold text-primary hover:underline flex items-center gap-0.5 active:scale-95 transition-transform" type="button">
+<span>Qayta yaratish</span>
+<span class="material-symbols-outlined text-sm" data-icon="refresh">refresh</span>
+</button>
+</div>
+<!-- Primary Action CTA Button -->
+<button class="w-full py-4 px-6 rounded-xl bg-primary hover:bg-surface-tint active:scale-[0.98] text-on-primary font-headline text-base font-bold shadow-md flex items-center justify-center gap-3 transition-all group" type="button">
+<span>Tizimga kirish</span>
+<span class="material-symbols-outlined text-xl transition-transform group-hover:translate-x-1" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+<!-- Quick Biometric / Device Trust Capsule -->
+<div class="flex items-center justify-between px-4 py-3 bg-surface-container-low rounded-xl border border-outline-variant/20">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-primary text-xl" data-icon="fingerprint">fingerprint</span>
+<div class="text-left">
+<p class="font-label text-xs font-bold text-on-surface">Biometrik kalit bilan bog'lash</p>
+<p class="font-body text-[11px] text-secondary">Kirgandan so'ng FaceID / TouchID faollashadi</p>
+</div>
+</div>
+<input checked="" class="rounded text-primary focus:ring-primary h-4 w-4 bg-background border-outline-variant cursor-pointer" type="checkbox"/>
+</div>
+</section>
+<!-- Footer Security & Metadata -->
+<footer class="w-full pt-4 border-t border-outline-variant/20 space-y-3">
+<!-- Security Protocol Banner -->
+<div class="flex items-start gap-2.5 text-secondary">
+<span class="material-symbols-outlined text-base shrink-0 text-primary mt-0.5" data-icon="shield">shield</span>
+<p class="font-body text-[11px] leading-relaxed">
+<strong class="font-semibold text-on-surface">MGMG Xavfsizlik protokoli:</strong> Parol yoki SMS talab etilmaydi. Token qurilmangizda shifrlangan holda saqlanadi.
+        </p>
+</div>
+<!-- Region & Build Version Info -->
+<div class="flex items-center justify-between text-[11px] font-mono text-outline pt-2">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-xs" data-icon="schedule">schedule</span>
+<span>Asia/Tashkent (UTC+5)</span>
+</div>
+<div>
+<span>v1.0.4 • Primus Laundry IT</span>
+</div>
+</div>
+</footer>
+</main>
+<script>
+    // Lightweight auto-formatter for uppercase invite code input
+    const input = document.getElementById('invite-code');
+    if (input) {
+      input.addEventListener('input', (e) => {
+        let val = e.target.value.toUpperCase();
+        // Disallow characters that aren't alphanumeric or hyphen
+        val = val.replace(/[^A-Z0-9-]/g, '');
+        e.target.value = val;
+      });
+    }
+  </script>
+</body></html>

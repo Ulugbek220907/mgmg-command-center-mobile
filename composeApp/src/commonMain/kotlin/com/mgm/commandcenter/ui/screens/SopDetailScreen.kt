@@ -26,7 +26,8 @@ import com.mgm.commandcenter.theme.*
 fun SopDetailScreen(
     sop: SopPermissionRequest,
     onBackClick: () -> Unit,
-    onOpenDecisionModal: (DirectorOutcome) -> Unit
+    onOpenDecisionModal: (DirectorOutcome) -> Unit,
+    onNavigateToNewSop: () -> Unit = {}
 ) {
     val scrollState = rememberScrollState()
 
@@ -53,16 +54,14 @@ fun SopDetailScreen(
                     Text("№ ${sop.trackingNumber} • 24-may, 2024", fontSize = 11.sp, color = SecondaryColor)
                 }
             }
-            Row {
-                Box(
-                    modifier = Modifier
-                        .size(34.dp)
-                        .clip(CircleShape)
-                        .background(SurfaceContainer)
-                        .clickable {},
-                    contentAlignment = Alignment.Center
+            Row(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
+                OutlinedButton(
+                    onClick = onNavigateToNewSop,
+                    shape = RoundedCornerShape(8.dp),
+                    contentPadding = PaddingValues(horizontal = 8.dp, vertical = 4.dp),
+                    modifier = Modifier.height(34.dp)
                 ) {
-                    Text("📥", fontSize = 14.sp)
+                    Text("➕ Yangi", fontSize = 11.sp, fontWeight = FontWeight.Bold, color = ForestGreen)
                 }
             }
         }
@@ -83,7 +82,13 @@ fun SopDetailScreen(
                         modifier = Modifier
                             .size(8.dp)
                             .clip(CircleShape)
-                            .background(WarmAmber)
+                            .background(
+                                when (sop.status) {
+                                    com.mgm.commandcenter.model.SopStatus.APPROVED -> ForestGreen
+                                    com.mgm.commandcenter.model.SopStatus.REJECTED -> TerraError
+                                    else -> WarmAmber
+                                }
+                            )
                     )
                     Spacer(modifier = Modifier.width(6.dp))
                     Text("Holat:", fontSize = 12.sp, fontWeight = FontWeight.SemiBold, color = SecondaryColor)
@@ -96,11 +101,138 @@ fun SopDetailScreen(
                         .padding(horizontal = 10.dp, vertical = 4.dp)
                 ) {
                     Text(
-                        text = "⏳ ${sop.status.titleUz}",
+                        text = when (sop.status) {
+                            com.mgm.commandcenter.model.SopStatus.APPROVED -> "✓ ${sop.status.titleUz}"
+                            com.mgm.commandcenter.model.SopStatus.REJECTED -> "✗ ${sop.status.titleUz}"
+                            else -> "⏳ ${sop.status.titleUz}"
+                        },
                         fontSize = 11.sp,
                         fontWeight = FontWeight.Bold,
-                        color = OnTertiaryFixed
+                        color = when (sop.status) {
+                            com.mgm.commandcenter.model.SopStatus.APPROVED -> ForestGreen
+                            com.mgm.commandcenter.model.SopStatus.REJECTED -> TerraError
+                            else -> OnTertiaryFixed
+                        }
                     )
+                }
+            }
+        }
+
+        // 1.1 Director Decision & Digital Signature Card (if decision exists)
+        sop.decision?.let { decision ->
+            Card(
+                shape = RoundedCornerShape(16.dp),
+                colors = CardDefaults.cardColors(
+                    containerColor = when (decision.outcome) {
+                        DirectorOutcome.APPROVE -> PrimaryFixed.copy(alpha = 0.4f)
+                        DirectorOutcome.CONDITIONAL -> SecondaryContainer.copy(alpha = 0.6f)
+                        DirectorOutcome.NEED_INFO -> SurfaceContainerLow
+                        DirectorOutcome.REJECT -> TerraErrorContainer.copy(alpha = 0.5f)
+                    }
+                ),
+                border = CardDefaults.outlinedCardBorder().copy(
+                    brush = androidx.compose.ui.graphics.SolidColor(
+                        when (decision.outcome) {
+                            DirectorOutcome.APPROVE -> ForestGreen.copy(alpha = 0.5f)
+                            DirectorOutcome.CONDITIONAL -> WarmAmber.copy(alpha = 0.5f)
+                            DirectorOutcome.NEED_INFO -> TerraOutline.copy(alpha = 0.4f)
+                            DirectorOutcome.REJECT -> TerraError.copy(alpha = 0.5f)
+                        }
+                    )
+                ),
+                elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
+            ) {
+                Column(modifier = Modifier.padding(14.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Row(verticalAlignment = Alignment.CenterVertically) {
+                            Text("⚖️", fontSize = 16.sp)
+                            Spacer(modifier = Modifier.width(6.dp))
+                            Text(
+                                text = "Operatsion Direktor Qarori",
+                                style = MaterialTheme.typography.titleMedium,
+                                color = WarmCharcoal,
+                                fontWeight = FontWeight.Bold
+                            )
+                        }
+                        Box(
+                            modifier = Modifier
+                                .clip(RoundedCornerShape(8.dp))
+                                .background(
+                                    when (decision.outcome) {
+                                        DirectorOutcome.APPROVE -> ForestGreen
+                                        DirectorOutcome.CONDITIONAL -> WarmAmber
+                                        DirectorOutcome.NEED_INFO -> SecondaryColor
+                                        DirectorOutcome.REJECT -> TerraError
+                                    }
+                                )
+                                .padding(horizontal = 8.dp, vertical = 3.dp)
+                        ) {
+                            Text(
+                                text = decision.outcome.titleUz,
+                                fontSize = 10.sp,
+                                fontWeight = FontWeight.Bold,
+                                color = Color.White
+                            )
+                        }
+                    }
+
+                    if (decision.conditionOrInstructions.isNotBlank()) {
+                        Box(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .clip(RoundedCornerShape(8.dp))
+                                .background(SurfaceContainerLowest)
+                                .border(0.5.dp, TerraOutlineVariant.copy(alpha = 0.4f), RoundedCornerShape(8.dp))
+                                .padding(10.dp)
+                        ) {
+                            Column {
+                                Text("Rahbar ko‘rsatmasi va shartlari:", fontSize = 10.sp, fontWeight = FontWeight.Bold, color = TerraOutline)
+                                Spacer(modifier = Modifier.height(3.dp))
+                                Text(
+                                    text = "“${decision.conditionOrInstructions}”",
+                                    fontSize = 12.sp,
+                                    fontStyle = FontStyle.Italic,
+                                    color = WarmCharcoal,
+                                    lineHeight = 16.sp
+                                )
+                            }
+                        }
+                    }
+
+                    // Digital signature footer
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Row(verticalAlignment = Alignment.CenterVertically) {
+                            Text("🛡️", fontSize = 12.sp)
+                            Spacer(modifier = Modifier.width(4.dp))
+                            Text(
+                                text = "${decision.signedByRole} • ${decision.decisionTime}",
+                                fontSize = 10.sp,
+                                color = SecondaryColor
+                            )
+                        }
+                        Box(
+                            modifier = Modifier
+                                .clip(RoundedCornerShape(6.dp))
+                                .background(SurfaceContainer)
+                                .padding(horizontal = 6.dp, vertical = 2.dp)
+                        ) {
+                            Text(
+                                text = "Imzo: ${decision.digitalSignatureId}",
+                                fontSize = 10.sp,
+                                fontFamily = androidx.compose.ui.text.font.FontFamily.Monospace,
+                                fontWeight = FontWeight.Bold,
+                                color = ForestGreen
+                            )
+                        }
+                    }
                 }
             }
         }

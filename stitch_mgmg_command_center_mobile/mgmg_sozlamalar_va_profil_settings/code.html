@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+
+<html class="light" lang="uz"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sozlamalar va Profil - Primus Command</title>
+<!-- Google Fonts: Literata (Serif) & Nunito Sans (Body) -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,400..800;1,7..72,400..700&amp;family=Nunito+Sans:ital,wght@0,300..900;1,300..900&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS with Forms and Container Queries -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Theme Configuration based on Terra Organic Design -->
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-secondary": "#ffffff",
+            "on-secondary-container": "#5e5548",
+            "secondary-container": "#f0e8db",
+            "outline-variant": "#c4c8bc",
+            "primary-fixed": "#c8e8d0",
+            "error": "#b83230",
+            "surface-tint": "#4a7c59",
+            "primary-container": "#78a886",
+            "surface-container-low": "#f5f1ea",
+            "on-tertiary-fixed-variant": "#554020",
+            "tertiary-fixed": "#f8e0a8",
+            "secondary": "#6b6358",
+            "primary-fixed-dim": "#8ecf9e",
+            "on-tertiary-fixed": "#221a05",
+            "on-primary-container": "#d8f0de",
+            "on-secondary-fixed": "#1e1a13",
+            "secondary-fixed": "#f0e8db",
+            "outline": "#74796e",
+            "on-surface-variant": "#4a4e4a",
+            "secondary-fixed-dim": "#d4ccbf",
+            "surface-variant": "#e4e0d8",
+            "surface-dim": "#dbd7cf",
+            "primary": "#4a7c59",
+            "inverse-on-surface": "#f5f0e8",
+            "on-background": "#2e3230",
+            "on-primary-fixed-variant": "#2a6038",
+            "on-secondary-fixed-variant": "#4a4538",
+            "tertiary-fixed-dim": "#dcc48e",
+            "surface-container-high": "#eae6de",
+            "on-tertiary": "#ffffff",
+            "tertiary": "#705c30",
+            "tertiary-container": "#c4a66a",
+            "on-error-container": "#690005",
+            "surface-container-highest": "#e4e0d8",
+            "inverse-surface": "#2e3230",
+            "surface-container-lowest": "#ffffff",
+            "background": "#faf6f0",
+            "on-surface": "#2e3230",
+            "error-container": "#ffdad8",
+            "surface-container": "#f0ece4",
+            "on-tertiary-container": "#554020",
+            "on-error": "#ffffff",
+            "inverse-primary": "#8ecf9e",
+            "surface-bright": "#faf6f0",
+            "on-primary": "#ffffff",
+            "on-primary-fixed": "#002110",
+            "surface": "#faf6f0"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.5rem",
+            "lg": "1rem",
+            "xl": "1.5rem",
+            "full": "9999px"
+          },
+          "fontFamily": {
+            "headline": ["Literata", "serif"],
+            "display": ["Literata", "serif"],
+            "body": ["Nunito Sans", "sans-serif"],
+            "label": ["Nunito Sans", "sans-serif"]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    body {
+      background-color: #faf6f0;
+      color: #2e3230;
+      font-family: 'Nunito Sans', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    /* Terra Organic subtle shadows */
+    .terra-card {
+      box-shadow: 0 4px 20px rgba(46, 50, 48, 0.05);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface min-h-screen flex justify-center selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- Mobile Container -->
+<div class="w-full max-w-md bg-surface min-h-screen flex flex-col relative pb-24">
+<!-- TopAppBar -->
+<header class="sticky top-0 z-40 bg-surface/90 backdrop-blur-md px-4 py-3.5 flex items-center justify-between shadow-sm">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-xl bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-xl">admin_panel_settings</span>
+</div>
+<div>
+<span class="text-xs uppercase tracking-wider text-secondary font-bold block leading-none">Primus Command</span>
+<h1 class="font-headline font-bold text-lg text-on-surface mt-0.5 leading-tight">Sozlamalar va Profil</h1>
+</div>
+</div>
+<button aria-label="Yordam" class="w-9 h-9 rounded-full bg-surface-container-low hover:bg-surface-container text-on-surface-variant flex items-center justify-center transition-colors active:scale-95">
+<span class="material-symbols-outlined text-xl">help_outline</span>
+</button>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-1 px-4 pt-4 space-y-6">
+<!-- Profile Identity Card (Xodim pasporti) -->
+<section class="bg-surface-container-lowest terra-card rounded-2xl p-5 border border-outline-variant/30 relative overflow-hidden">
+<!-- Organic subtle ambient glow in corner -->
+<div class="absolute -right-8 -top-8 w-32 h-32 rounded-full bg-primary-fixed/20 pointer-events-none blur-2xl"></div>
+<div class="flex items-start gap-4">
+<!-- Avatar with initials & active status dot -->
+<div class="relative flex-shrink-0">
+<div class="w-16 h-16 rounded-2xl bg-secondary-container text-tertiary flex items-center justify-center font-headline font-bold text-2xl shadow-inner border border-outline-variant/40">
+              AP
+            </div>
+<span class="absolute -bottom-1 -right-1 w-4 h-4 bg-primary rounded-full ring-2 ring-surface-container-lowest flex items-center justify-center">
+<span class="w-1.5 h-1.5 bg-on-primary rounded-full animate-pulse"></span>
+</span>
+</div>
+<!-- Main Info -->
+<div class="flex-1 min-w-0">
+<div class="flex items-center justify-between gap-1">
+<h2 class="font-headline font-bold text-xl text-on-surface truncate">Alisher Po'latov</h2>
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-semibold bg-primary-fixed/50 text-on-primary-fixed-variant">
+<span class="w-1.5 h-1.5 rounded-full bg-primary mr-1.5"></span>
+                Faol xodim
+              </span>
+</div>
+<!-- Role & Division -->
+<p class="text-sm font-medium text-secondary mt-1 flex items-center gap-1.5">
+<span class="material-symbols-outlined text-sm text-tertiary">storefront</span>
+<span class="truncate">B2B Sotuv mutaxassisi • Primus Laundry</span>
+</p>
+<!-- Employee Meta Bento -->
+<div class="mt-4 pt-3 border-t border-outline-variant/20 grid grid-cols-2 gap-3 text-xs">
+<div class="bg-surface-container-low/70 rounded-xl p-2.5">
+<span class="text-secondary block font-medium">Tizim kodi (ID)</span>
+<span class="font-headline font-bold text-on-surface text-sm tracking-wide">EMJ-204</span>
+</div>
+<div class="bg-surface-container-low/70 rounded-xl p-2.5">
+<span class="text-secondary block font-medium">Biriktirilgan hudud</span>
+<span class="font-headline font-bold text-on-surface text-sm">Toshkent Markaz</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 1: Bildirishnomalar va Eslatmalar (Push Notifications) -->
+<section class="space-y-3">
+<div class="flex items-center justify-between px-1">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-xl">notifications_active</span>
+<h3 class="font-headline font-bold text-base text-on-surface">Bildirishnomalar va Eslatmalar</h3>
+</div>
+<span class="text-xs font-semibold text-secondary bg-surface-container px-2.5 py-0.5 rounded-full">SOP qoidalari</span>
+</div>
+<div class="bg-surface-container-lowest terra-card rounded-2xl border border-outline-variant/30 divide-y divide-outline-variant/20 overflow-hidden">
+<!-- Toggle Item 1 -->
+<div class="p-4 flex items-center justify-between gap-3">
+<div class="space-y-0.5">
+<span class="font-label font-bold text-sm text-on-surface flex items-center gap-1.5">
+                Kunlik hisobot (16:00)
+                <span class="text-xs px-1.5 py-0.2 rounded bg-tertiary-fixed text-on-tertiary-fixed font-semibold">Majburiy</span>
+</span>
+<p class="text-xs text-on-surface-variant font-normal leading-relaxed">Har ish kuni hisobot topshirish boshlanganda</p>
+</div>
+<!-- Toggle ON -->
+<button aria-checked="true" class="w-12 h-7 bg-primary rounded-full p-1 transition-colors duration-200 ease-in-out focus:outline-none flex-shrink-0 cursor-pointer" role="switch" type="button">
+<span class="w-5 h-5 bg-on-primary rounded-full shadow-md transform translate-x-5 transition-transform duration-200 block"></span>
+</button>
+</div>
+<!-- Toggle Item 2 -->
+<div class="p-4 flex items-center justify-between gap-3">
+<div class="space-y-0.5">
+<span class="font-label font-bold text-sm text-on-surface">Hisobot eslatmasi (17:00)</span>
+<p class="text-xs text-on-surface-variant font-normal leading-relaxed">Agar hisobot topshirilmagan bo'lsa</p>
+</div>
+<!-- Toggle ON -->
+<button aria-checked="true" class="w-12 h-7 bg-primary rounded-full p-1 transition-colors duration-200 ease-in-out focus:outline-none flex-shrink-0 cursor-pointer" role="switch" type="button">
+<span class="w-5 h-5 bg-on-primary rounded-full shadow-md transform translate-x-5 transition-transform duration-200 block"></span>
+</button>
+</div>
+<!-- Toggle Item 3 -->
+<div class="p-4 flex items-center justify-between gap-3">
+<div class="space-y-0.5">
+<span class="font-label font-bold text-sm text-on-surface">Ruxsatnoma holatlari (SOP)</span>
+<p class="text-xs text-on-surface-variant font-normal leading-relaxed">Direktor qarori va o'zgarishlar to'g'risida</p>
+</div>
+<!-- Toggle ON -->
+<button aria-checked="true" class="w-12 h-7 bg-primary rounded-full p-1 transition-colors duration-200 ease-in-out focus:outline-none flex-shrink-0 cursor-pointer" role="switch" type="button">
+<span class="w-5 h-5 bg-on-primary rounded-full shadow-md transform translate-x-5 transition-transform duration-200 block"></span>
+</button>
+</div>
+<!-- Device Push Hardware Status -->
+<div class="px-4 py-3 bg-surface-container-low/50 flex items-center justify-between text-xs">
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-base text-primary">phonelink_ring</span>
+<span class="font-medium">Expo Push faol • iPhone 15 Pro</span>
+</div>
+<span class="flex items-center gap-1 text-primary font-bold text-[11px]">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+              Ulangan
+            </span>
+</div>
+</div>
+</section>
+<!-- Section 2: Dastur va Tizim ma'lumotlari -->
+<section class="space-y-3">
+<div class="flex items-center gap-2 px-1">
+<span class="material-symbols-outlined text-tertiary text-xl">tune</span>
+<h3 class="font-headline font-bold text-base text-on-surface">Dastur va Tizim ma'lumotlari</h3>
+</div>
+<div class="bg-surface-container-lowest terra-card rounded-2xl border border-outline-variant/30 divide-y divide-outline-variant/20 overflow-hidden">
+<!-- Row: Til -->
+<button class="w-full p-4 flex items-center justify-between hover:bg-surface-container-low/40 transition-colors text-left group">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-lg">language</span>
+</div>
+<div>
+<span class="text-xs text-secondary font-medium block">Til (Language)</span>
+<span class="font-label font-bold text-sm text-on-surface">O'zbekcha (Lotin)</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors text-xl">chevron_right</span>
+</button>
+<!-- Row: SOP formati -->
+<button class="w-full p-4 flex items-center justify-between hover:bg-surface-container-low/40 transition-colors text-left group">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-lg">description</span>
+</div>
+<div>
+<span class="text-xs text-secondary font-medium block">SOP formati</span>
+<span class="font-label font-bold text-sm text-on-surface">O'zbekcha (Kirill) - Rasmiy</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors text-xl">chevron_right</span>
+</button>
+<!-- Row: Dastur versiyasi -->
+<div class="p-4 flex flex-col gap-1.5">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-lg">verified_user</span>
+</div>
+<div>
+<span class="text-xs text-secondary font-medium block">Dastur versiyasi</span>
+<span class="font-label font-bold text-sm text-on-surface">v1.0.4 (Build 42)</span>
+</div>
+</div>
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-bold bg-primary-fixed/40 text-on-primary-fixed-variant">
+                Barqaror
+              </span>
+</div>
+<div class="ml-11 flex items-center gap-1.5 text-xs text-secondary font-medium">
+<span class="material-symbols-outlined text-sm text-primary">check_circle</span>
+              Eng so'nggi talabga javob beradi (min: v1.0.0)
+            </div>
+</div>
+<!-- Row: Vaqt mintaqasi -->
+<div class="p-4 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-lg">schedule</span>
+</div>
+<div>
+<span class="text-xs text-secondary font-medium block">Vaqt mintaqasi</span>
+<span class="font-label font-bold text-sm text-on-surface">Asia/Tashkent (UTC+5)</span>
+</div>
+</div>
+<span class="text-xs font-semibold text-secondary bg-surface-container-high px-2 py-1 rounded-lg">Avtomatik</span>
+</div>
+</div>
+</section>
+<!-- Section 3: Xavfsizlik va Seans (Security & Auth) -->
+<section class="space-y-3">
+<div class="flex items-center gap-2 px-1">
+<span class="material-symbols-outlined text-secondary text-xl">security</span>
+<h3 class="font-headline font-bold text-base text-on-surface">Xavfsizlik va Seans</h3>
+</div>
+<div class="space-y-3">
+<!-- Active Session Card -->
+<div class="bg-surface-container-lowest terra-card rounded-2xl p-4 border border-outline-variant/30 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-primary-fixed/30 text-on-primary-fixed-variant flex items-center justify-center">
+<span class="material-symbols-outlined text-xl">lock</span>
+</div>
+<div>
+<span class="font-label font-bold text-sm text-on-surface block">Faol seans: Ushbu qurilma</span>
+<span class="text-xs text-secondary font-medium">SecureStore shifrlangan ma'lumotlar ombori</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-primary text-xl">shield_locked</span>
+</div>
+<!-- Telegram Connect -->
+<a class="bg-surface-container-lowest terra-card rounded-2xl p-4 border border-outline-variant/30 flex items-center justify-between hover:bg-surface-container-low transition-colors group" href="#">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-secondary-container text-on-secondary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-xl">send</span>
+</div>
+<div>
+<span class="font-label font-bold text-sm text-on-surface block">Telegram orqali bog'lanish</span>
+<span class="text-xs text-primary font-bold">@alisher_mgmg</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-secondary group-hover:text-primary transition-colors text-xl">arrow_outward</span>
+</a>
+<!-- Danger Log out Container -->
+<div class="bg-error-container/20 rounded-2xl p-4 border border-error/20 space-y-3 mt-4">
+<button class="w-full py-3.5 px-4 rounded-xl bg-surface-container-lowest hover:bg-error/10 text-error border border-error/30 font-label font-bold text-sm flex items-center justify-center gap-2 transition-all active:scale-[0.98] shadow-sm">
+<span class="material-symbols-outlined text-lg">logout</span>
+              Tizimdan chiqish (Log out)
+            </button>
+<p class="text-xs text-on-surface-variant font-normal leading-relaxed text-center px-1">
+              Chiqish amalga oshirilganda ushbu qurilmadagi tokenlar o'chiriladi va qayta kirish uchun yangi taklif kodi talab qilinadi.
+            </p>
+</div>
+</div>
+</section>
+<!-- App Branding / Footer Stamp -->
+<footer class="text-center pt-2 pb-6 space-y-1">
+<p class="font-headline font-bold text-xs text-secondary tracking-wider uppercase">Primus Management Group</p>
+<p class="text-[11px] text-outline">Barcha huquqlar himoyalangan • Ichki foydalanish uchun</p>
+</footer>
+</main>
+<!-- BottomNavBar (Shared Component from JSON) -->
+<!-- Active State: 'Sozlamalar' (4th tab) since this is the Settings & Profile screen -->
+<nav class="fixed bottom-0 w-full z-50 flex justify-around items-center px-2 py-2 max-w-md mx-auto left-0 right-0 bg-surface-container-lowest shadow-sm">
+<!-- Tab 1: Bosh sahifa -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-3 py-1.5 hover:text-primary transition-colors active:scale-95" href="#">
+<span class="material-symbols-outlined text-2xl">dashboard</span>
+<span class="font-label text-xs font-semibold mt-0.5">Bosh sahifa</span>
+</a>
+<!-- Tab 2: Hisobot -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-3 py-1.5 hover:text-primary transition-colors active:scale-95" href="#">
+<span class="material-symbols-outlined text-2xl">bar_chart</span>
+<span class="font-label text-xs font-semibold mt-0.5">Hisobot</span>
+</a>
+<!-- Tab 3: Ruxsatnomalar -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-3 py-1.5 hover:text-primary transition-colors active:scale-95" href="#">
+<span class="material-symbols-outlined text-2xl">verified</span>
+<span class="font-label text-xs font-semibold mt-0.5">Ruxsatnomalar</span>
+</a>
+<!-- Tab 4: Sozlamalar (ACTIVE) -->
+<a class="flex flex-col items-center justify-center bg-primary-container/30 text-primary rounded-xl px-3 py-1.5 font-bold active:scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1;">settings</span>
+<span class="font-label text-xs font-semibold mt-0.5">Sozlamalar</span>
+</a>
+</nav>
+</div>
+</body></html>

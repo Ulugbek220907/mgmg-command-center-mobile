@@ -167,7 +167,7 @@ fun SopRequestScreen(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.spacedBy(6.dp)
             ) {
-                SopCategory.values().forEach { cat ->
+                SopCategory.entries.forEach { cat ->
                     val isSelected = cat == selectedCategory
                     Box(
                         modifier = Modifier
@@ -219,13 +219,18 @@ fun SopRequestScreen(
                     )
                 )
 
+                val isReasonLengthValid = reasonText.trim().length >= 20
                 Spacer(modifier = Modifier.height(6.dp))
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
-                    Text("✓ Minimal hajm talabiga javob beradi", fontSize = 11.sp, color = ForestGreen, fontWeight = FontWeight.SemiBold)
-                    Text("${reasonText.length} / 500 belgi", fontSize = 11.sp, color = SecondaryColor)
+                    if (isReasonLengthValid) {
+                        Text("✓ Minimal hajm talabiga javob beradi (≥20 belgi)", fontSize = 11.sp, color = ForestGreen, fontWeight = FontWeight.SemiBold)
+                    } else {
+                        Text("⚠️ Kamida 20 ta belgi kiritilishi shart (yana ${20 - reasonText.trim().length} ta)", fontSize = 11.sp, color = TerraError, fontWeight = FontWeight.SemiBold)
+                    }
+                    Text("${reasonText.length} / 500 belgi", fontSize = 11.sp, color = if (isReasonLengthValid) SecondaryColor else TerraError)
                 }
             }
         }
@@ -311,29 +316,53 @@ fun SopRequestScreen(
                     }
                 }
                 Spacer(modifier = Modifier.height(8.dp))
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .clip(RoundedCornerShape(10.dp))
-                        .background(SurfaceContainerLowest)
-                        .padding(10.dp),
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    Box(
-                        modifier = Modifier
-                            .size(32.dp)
-                            .clip(CircleShape)
-                            .background(PrimaryFixed),
-                        contentAlignment = Alignment.Center
-                    ) {
-                        Text("JS", fontSize = 12.sp, fontWeight = FontWeight.Bold, color = OnPrimaryFixedVariant)
-                    }
-                    Spacer(modifier = Modifier.width(10.dp))
-                    Column(modifier = Modifier.weight(1f)) {
-                        Text("Jamshid Saidov", fontSize = 12.sp, fontWeight = FontWeight.Bold, color = WarmCharcoal)
-                        Text("B2B Sotuv bo‘limi boshlig‘i o‘rinbosari", fontSize = 10.sp, color = SecondaryColor)
-                    }
-                }
+                OutlinedTextField(
+                    value = substitutePerson,
+                    onValueChange = { substitutePerson = it },
+                    placeholder = { Text("O'rinbosar F.I.Sh. va lavozimi") },
+                    modifier = Modifier.fillMaxWidth(),
+                    shape = RoundedCornerShape(10.dp),
+                    colors = OutlinedTextFieldDefaults.colors(
+                        focusedContainerColor = SurfaceContainerLowest,
+                        unfocusedContainerColor = SurfaceContainerLowest,
+                        focusedBorderColor = ForestGreen
+                    )
+                )
+            }
+        }
+
+        // 5b. Muddat va limit
+        Card(
+            shape = RoundedCornerShape(14.dp),
+            colors = CardDefaults.cardColors(containerColor = SurfaceContainerLow),
+            border = CardDefaults.outlinedCardBorder().copy(brush = androidx.compose.ui.graphics.SolidColor(TerraOutlineVariant.copy(alpha = 0.3f)))
+        ) {
+            Column(modifier = Modifier.padding(14.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                Text("Muddat va Xarajat Limiti", fontWeight = FontWeight.Bold, fontSize = 12.sp, color = WarmCharcoal)
+                OutlinedTextField(
+                    value = datesRange,
+                    onValueChange = { datesRange = it },
+                    label = { Text("Muddat oralig'i") },
+                    modifier = Modifier.fillMaxWidth(),
+                    shape = RoundedCornerShape(10.dp),
+                    colors = OutlinedTextFieldDefaults.colors(
+                        focusedContainerColor = SurfaceContainerLowest,
+                        unfocusedContainerColor = SurfaceContainerLowest,
+                        focusedBorderColor = ForestGreen
+                    )
+                )
+                OutlinedTextField(
+                    value = expenseLimit,
+                    onValueChange = { expenseLimit = it },
+                    label = { Text("Maksimal xarajat limiti") },
+                    modifier = Modifier.fillMaxWidth(),
+                    shape = RoundedCornerShape(10.dp),
+                    colors = OutlinedTextFieldDefaults.colors(
+                        focusedContainerColor = SurfaceContainerLowest,
+                        unfocusedContainerColor = SurfaceContainerLowest,
+                        focusedBorderColor = ForestGreen
+                    )
+                )
             }
         }
 
@@ -359,6 +388,7 @@ fun SopRequestScreen(
         }
 
         // 7. Action Footer Buttons
+        val isFormValid = reasonText.trim().length >= 20 && substitutePerson.isNotBlank()
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.spacedBy(10.dp)
@@ -373,22 +403,33 @@ fun SopRequestScreen(
 
             Button(
                 onClick = {
-                    CommandCenterRepository.instance.createSopRequest(
-                        category = selectedCategory,
-                        reason = reasonText,
-                        substitutePerson = substitutePerson,
-                        datesRange = datesRange,
-                        expenseLimit = expenseLimit
-                    )
-                    onSubmitComplete()
+                    if (isFormValid) {
+                        CommandCenterRepository.instance.createSopRequest(
+                            category = selectedCategory,
+                            reason = reasonText.trim(),
+                            substitutePerson = substitutePerson.trim(),
+                            datesRange = datesRange.trim(),
+                            expenseLimit = expenseLimit.trim()
+                        )
+                        onSubmitComplete()
+                    }
                 },
+                enabled = isFormValid,
                 modifier = Modifier.weight(2f).height(46.dp),
                 shape = RoundedCornerShape(12.dp),
-                colors = ButtonDefaults.buttonColors(containerColor = ForestGreen)
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = ForestGreen,
+                    disabledContainerColor = SurfaceContainerHighest
+                )
             ) {
-                Text("Arizani yuborish", fontSize = 12.sp, fontWeight = FontWeight.Bold, color = OnPrimary)
+                Text(
+                    "Arizani yuborish",
+                    fontSize = 12.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = if (isFormValid) OnPrimary else SecondaryColor
+                )
                 Spacer(modifier = Modifier.width(6.dp))
-                Text("➔", fontSize = 14.sp)
+                Text("➔", fontSize = 14.sp, color = if (isFormValid) OnPrimary else SecondaryColor)
             }
         }
     }

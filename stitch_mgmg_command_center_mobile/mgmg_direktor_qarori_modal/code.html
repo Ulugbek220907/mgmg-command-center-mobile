@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+
+<html class="h-full" lang="uz"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>MGMG - Direktor qarori (Modal)</title>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts: Literata & Nunito Sans -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,400..700;1,7..72,400..700&amp;family=Nunito+Sans:ital,opsz,wght@0,6..12,300..900;1,6..12,300..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-tertiary-fixed-variant": "#554020",
+            "background": "#faf6f0",
+            "primary-container": "#78a886",
+            "tertiary": "#705c30",
+            "on-secondary-fixed-variant": "#4a4538",
+            "on-surface": "#2e3230",
+            "on-background": "#2e3230",
+            "on-primary-fixed": "#002110",
+            "tertiary-fixed-dim": "#dcc48e",
+            "error": "#b83230",
+            "on-error": "#ffffff",
+            "on-surface-variant": "#4a4e4a",
+            "surface": "#faf6f0",
+            "tertiary-container": "#c4a66a",
+            "on-primary-fixed-variant": "#2a6038",
+            "on-error-container": "#690005",
+            "on-secondary-fixed": "#1e1a13",
+            "primary": "#4a7c59",
+            "on-tertiary-fixed": "#221a05",
+            "surface-bright": "#faf6f0",
+            "on-tertiary-container": "#554020",
+            "primary-fixed": "#c8e8d0",
+            "surface-container-lowest": "#ffffff",
+            "tertiary-fixed": "#f8e0a8",
+            "surface-dim": "#dbd7cf",
+            "on-primary": "#ffffff",
+            "on-primary-container": "#d8f0de",
+            "secondary": "#6b6358",
+            "secondary-fixed-dim": "#d4ccbf",
+            "surface-container": "#f0ece4",
+            "surface-variant": "#e4e0d8",
+            "secondary-fixed": "#f0e8db",
+            "surface-container-highest": "#e4e0d8",
+            "inverse-on-surface": "#f5f0e8",
+            "error-container": "#ffdad8",
+            "inverse-primary": "#8ecf9e",
+            "on-secondary": "#ffffff",
+            "on-secondary-container": "#5e5548",
+            "surface-tint": "#4a7c59",
+            "outline-variant": "#c4c8bc",
+            "inverse-surface": "#2e3230",
+            "surface-container-high": "#eae6de",
+            "surface-container-low": "#f5f1ea",
+            "secondary-container": "#f0e8db",
+            "outline": "#74796e",
+            "primary-fixed-dim": "#8ecf9e",
+            "on-tertiary": "#ffffff"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.5rem",
+            "lg": "1rem",
+            "xl": "1.5rem",
+            "full": "9999px"
+          },
+          "fontFamily": {
+            "headline": ["Literata", "serif"],
+            "display": ["Literata", "serif"],
+            "body": ["Nunito Sans", "sans-serif"],
+            "label": ["Nunito Sans", "sans-serif"]
+          }
+        },
+      },
+    }
+  </script>
+</head>
+<body class="bg-background text-on-surface font-body antialiased selection:bg-primary selection:text-on-primary min-h-screen relative overflow-hidden flex justify-center">
+<!-- Mobile Viewport Wrapper -->
+<div class="w-full max-w-md min-h-screen relative flex flex-col justify-end overflow-hidden shadow-2xl bg-surface">
+<!-- UNDERLYING BACKDROP SCREEN: SCREEN_4 (SOP Permission Review Screen) -->
+<div class="absolute inset-0 z-0 flex flex-col filter blur-[3px] select-none pointer-events-none opacity-40 transition-all duration-300">
+<!-- Top Bar of Backdrop -->
+<header class="bg-surface dark:bg-inverse-surface shadow-sm flex justify-between items-center w-full px-4 py-3 border-b border-outline-variant/30">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-xl">arrow_back</span>
+<span class="font-headline font-bold text-lg text-primary">Primus Command</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-on-surface-variant">notifications</span>
+<div class="w-7 h-7 rounded-full bg-secondary-container flex items-center justify-center text-xs font-bold text-secondary">OD</div>
+</div>
+</header>
+<!-- Content Canvas Underlay -->
+<div class="p-4 space-y-4 flex-1 overflow-y-auto">
+<div class="bg-surface-container-lowest p-4 rounded-xl shadow-sm border border-outline-variant/20">
+<div class="flex items-center justify-between pb-2 border-b border-outline-variant/10">
+<span class="text-xs font-semibold text-primary">EMJ-SOP-ADM-01</span>
+<span class="text-xs px-2 py-0.5 rounded-full bg-tertiary-fixed text-on-tertiary-fixed font-bold">Ko'rib chiqilmoqda</span>
+</div>
+<h2 class="font-headline font-bold text-base text-on-surface mt-2">B2B Xizmat safari ruxsatnomasi</h2>
+<p class="text-xs text-on-surface-variant mt-1">Xodim: Alisher Po'latov — Bosh marketing mutaxassisi</p>
+<div class="mt-3 grid grid-cols-2 gap-2 text-xs">
+<div class="bg-surface-container-low p-2 rounded">
+<span class="text-outline block text-[10px]">MUDDAT</span>
+<span class="font-semibold text-on-surface">27-28 May, 2025</span>
+</div>
+<div class="bg-surface-container-low p-2 rounded">
+<span class="text-outline block text-[10px]">SMETA</span>
+<span class="font-semibold text-on-surface">1,450,000 UZS</span>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-4 rounded-xl shadow-sm border border-outline-variant/20 space-y-2">
+<h3 class="font-headline font-semibold text-sm text-on-surface">Asosiy maqsad va yo'nalish</h3>
+<p class="text-xs text-on-surface-variant leading-relaxed">
+            Samarqand viloyati distribyutorlik tarmog'i bilan yarim yillik shartnomalarni yangilash hamda hududiy savdo ko'rsatkichlarini auditdan o'tkazish.
+          </p>
+</div>
+</div>
+</div>
+<!-- Scrim / Dimmer Overlay Layer -->
+<div class="absolute inset-0 bg-inverse-surface/40 backdrop-blur-[2px] z-10 transition-opacity"></div>
+<!-- MODAL BOTTOM SHEET OVERLAY (Active Context) -->
+<div class="relative z-20 w-full max-h-[92vh] bg-surface-container-lowest rounded-t-xl shadow-2xl flex flex-col border-t border-outline-variant/20 animate-in slide-in-from-bottom duration-300">
+<!-- Drag Handle Bar -->
+<div class="w-full flex items-center justify-center pt-3 pb-1.5 cursor-grab">
+<div class="w-12 h-1.5 bg-outline-variant/60 rounded-full"></div>
+</div>
+<!-- Sheet Header -->
+<div class="px-5 pt-2 pb-3 border-b border-outline-variant/15 flex items-start justify-between">
+<div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-xl" style="font-variation-settings: 'FILL' 1;">gavel</span>
+<h1 class="font-headline font-bold text-lg text-on-surface leading-tight">Qaror qabul qilish (EMJ-SOP-ADM-01)</h1>
+</div>
+<p class="font-body text-xs text-on-surface-variant font-medium mt-1">
+            Alisher Po'latov — B2B Xizmat safari (27-28 may)
+          </p>
+</div>
+<button aria-label="Yopish" class="text-on-surface-variant hover:text-on-surface hover:bg-surface-container rounded-full p-1 transition-colors" type="button">
+<span class="material-symbols-outlined text-xl">close</span>
+</button>
+</div>
+<!-- Modal Body (Scrollable Bento / Form Area) -->
+<div class="px-5 py-4 overflow-y-auto space-y-4 max-h-[calc(92vh-170px)]">
+<!-- Decision Type Selector (4 Standard SOP Outcomes Bento/Pill Matrix) -->
+<div>
+<label class="block font-label text-xs font-bold text-on-surface-variant uppercase tracking-wider mb-2">
+            Qaror turi (SOP Reglamenti)
+          </label>
+<div class="grid grid-cols-2 gap-2.5">
+<!-- Outcome 1: Tasdiqlash -->
+<label class="relative flex flex-col p-2.5 rounded-xl border border-outline-variant/40 bg-surface-container-low hover:bg-surface-container transition-all cursor-pointer">
+<input class="sr-only peer" name="decision_type" type="radio" value="approve"/>
+<div class="flex items-center justify-between">
+<span class="material-symbols-outlined text-primary text-xl">check_circle</span>
+<span class="w-3.5 h-3.5 rounded-full border-2 border-outline-variant peer-checked:border-primary peer-checked:bg-primary"></span>
+</div>
+<span class="font-headline font-bold text-xs text-on-surface mt-1.5">Tasdiqlash</span>
+<span class="text-[11px] text-on-surface-variant">To'liq ma'qullash</span>
+</label>
+<!-- Outcome 2: Shartli tasdiqlash (ACTIVE / SELECTED) -->
+<label class="relative flex flex-col p-2.5 rounded-xl border-2 border-tertiary bg-secondary-container/40 ring-2 ring-tertiary/20 transition-all cursor-pointer shadow-sm">
+<input checked="" class="sr-only peer" name="decision_type" type="radio" value="conditional"/>
+<div class="flex items-center justify-between">
+<span class="material-symbols-outlined text-tertiary text-xl" style="font-variation-settings: 'FILL' 1;">rule</span>
+<span class="w-3.5 h-3.5 rounded-full border-2 border-tertiary bg-tertiary flex items-center justify-center">
+<span class="w-1.5 h-1.5 bg-surface-container-lowest rounded-full"></span>
+</span>
+</div>
+<span class="font-headline font-bold text-xs text-tertiary mt-1.5">Shartli tasdiqlash</span>
+<span class="text-[11px] text-on-secondary-container font-semibold">Qo'shimcha talab bilan</span>
+</label>
+<!-- Outcome 3: Qo'shimcha ma'lumot -->
+<label class="relative flex flex-col p-2.5 rounded-xl border border-outline-variant/40 bg-surface-container-low hover:bg-surface-container transition-all cursor-pointer">
+<input class="sr-only peer" name="decision_type" type="radio" value="info"/>
+<div class="flex items-center justify-between">
+<span class="material-symbols-outlined text-secondary text-xl">help</span>
+<span class="w-3.5 h-3.5 rounded-full border-2 border-outline-variant peer-checked:border-primary peer-checked:bg-primary"></span>
+</div>
+<span class="font-headline font-bold text-xs text-on-surface mt-1.5">Qo'shimcha ma'lumot</span>
+<span class="text-[11px] text-on-surface-variant">Izoh talab qilinadi</span>
+</label>
+<!-- Outcome 4: Rad etish -->
+<label class="relative flex flex-col p-2.5 rounded-xl border border-outline-variant/40 bg-surface-container-low hover:bg-error-container/20 transition-all cursor-pointer">
+<input class="sr-only peer" name="decision_type" type="radio" value="reject"/>
+<div class="flex items-center justify-between">
+<span class="material-symbols-outlined text-error text-xl">cancel</span>
+<span class="w-3.5 h-3.5 rounded-full border-2 border-outline-variant peer-checked:border-error peer-checked:bg-error"></span>
+</div>
+<span class="font-headline font-bold text-xs text-on-surface mt-1.5">Rad etish</span>
+<span class="text-[11px] text-on-surface-variant">Bekor qilish asosi</span>
+</label>
+</div>
+</div>
+<!-- Condition & Comment Input Section -->
+<div class="space-y-2">
+<div class="flex justify-between items-center">
+<label class="font-label text-xs font-bold text-on-surface" for="condition_input">
+              Qaror sharti yoki ko'rsatma (Majburiy) <span class="text-error">*</span>
+</label>
+<span class="text-[10px] text-tertiary font-semibold uppercase tracking-wider bg-secondary-container px-2 py-0.5 rounded">SOP talabi</span>
+</div>
+<div class="relative">
+<textarea class="w-full text-xs font-body text-on-surface bg-surface-container-low border border-outline-variant/60 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary leading-relaxed resize-none shadow-inner" id="condition_input" placeholder="Rahbar ko'rsatmasini kiriting..." rows="4">Samarqand safari xarajatlari 1.5 mln so'mdan oshmasligi kerak. Safar tugagach 3 ish kuni ichida B2B shartnoma nusxasi va buxgalteriya cheklari taqdim etilsin.</textarea>
+<div class="absolute bottom-2.5 right-3 text-[10px] text-outline font-mono">152 belgi</div>
+</div>
+<!-- Quick tags / ready templates chips -->
+<div class="pt-1">
+<span class="text-[11px] text-on-surface-variant block mb-1.5 font-medium">Tayyor shablon ko'rsatmalar:</span>
+<div class="flex flex-wrap gap-1.5">
+<button class="inline-flex items-center gap-1 text-[11px] bg-surface-container hover:bg-surface-variant text-on-surface-variant px-2.5 py-1 rounded-full border border-outline-variant/40 transition-colors" type="button">
+<span class="material-symbols-outlined text-[13px] text-primary">add</span>
+                Xarajat limitiga rioya qilish
+              </button>
+<button class="inline-flex items-center gap-1 text-[11px] bg-surface-container hover:bg-surface-variant text-on-surface-variant px-2.5 py-1 rounded-full border border-outline-variant/40 transition-colors" type="button">
+<span class="material-symbols-outlined text-[13px] text-primary">add</span>
+                Hisobot 3 kunda
+              </button>
+<button class="inline-flex items-center gap-1 text-[11px] bg-surface-container hover:bg-surface-variant text-on-surface-variant px-2.5 py-1 rounded-full border border-outline-variant/40 transition-colors" type="button">
+<span class="material-symbols-outlined text-[13px] text-primary">add</span>
+                O'rinbosar bilan muvofiqlashtirish
+              </button>
+</div>
+</div>
+</div>
+<!-- Document Impact Notice Card -->
+<div class="bg-surface-container-low rounded-xl p-3.5 border border-outline-variant/30 flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-xl mt-0.5 shrink-0" style="font-variation-settings: 'FILL' 1;">description</span>
+<div class="text-xs text-on-surface-variant leading-relaxed">
+<span class="font-bold text-on-surface block mb-0.5">Hujjatga biriktirish:</span>
+            Ushbu izoh va shart avtomatik ravishda <strong class="text-on-surface font-semibold">EMJ-SOP-ADM-01 .docx</strong> hujjatining "Rahbar xulosasi" bandiga kiritiladi va xodimga push-bildirishnoma yuboriladi.
+          </div>
+</div>
+<!-- Audit & Digital Signature Status Notice -->
+<div class="flex items-center justify-between text-[11px] text-outline px-1">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-sm text-primary" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+<span>Toshkent vaqti bilan 24-may 14:45 • Operatsion Direktor imzosi bilan</span>
+</div>
+<span class="font-mono text-[10px] text-outline-variant">ID: 884-OD</span>
+</div>
+</div>
+<!-- Modal Footer Action Buttons -->
+<div class="px-5 py-3.5 bg-surface-container-low/70 border-t border-outline-variant/20 flex flex-col gap-2">
+<button class="w-full bg-primary hover:bg-primary-container text-on-primary font-headline font-bold text-sm py-3 px-4 rounded-xl flex items-center justify-center gap-2 shadow-sm transition-all active:scale-[0.98]" type="button">
+<span class="material-symbols-outlined text-lg">check_circle</span>
+<span>Qarorni tasdiqlash va yuborish</span>
+</button>
+<button class="w-full bg-transparent hover:bg-surface-container text-secondary font-body font-semibold text-xs py-2 px-4 rounded-lg transition-colors text-center" type="button">
+          Bekor qilish
+        </button>
+</div>
+</div>
+</div>
+</body></html>

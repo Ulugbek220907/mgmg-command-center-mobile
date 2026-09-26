@@ -24,8 +24,8 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
 
-      - name: Run Tests
-        run: ./gradlew test --stacktrace
+      - name: Run Tests & Compile Multiplatform Metadata
+        run: ./gradlew test :composeApp:compileCommonMainKotlinMetadata --stacktrace
 
   build-android:
     name: Build Android APK

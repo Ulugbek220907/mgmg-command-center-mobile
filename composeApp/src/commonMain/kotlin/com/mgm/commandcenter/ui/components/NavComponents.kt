@@ -146,7 +146,7 @@ fun PrimusBottomNavBar(
             horizontalArrangement = Arrangement.SpaceAround,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            AppTab.values().forEach { tab ->
+            AppTab.entries.forEach { tab ->
                 val isSelected = tab == selectedTab
                 Box(
                     modifier = Modifier

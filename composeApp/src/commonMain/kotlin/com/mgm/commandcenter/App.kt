@@ -109,7 +109,8 @@ fun App(
                                     onOpenDecisionModal = { outcome ->
                                         decisionOutcomeToReview = outcome
                                         isDecisionModalOpen = true
-                                    }
+                                    },
+                                    onNavigateToNewSop = { activeScreen = ActiveScreen.NEW_SOP }
                                 )
                                 AppTab.SETTINGS -> SettingsScreen(
                                     profile = userProfile,
@@ -145,18 +146,22 @@ fun App(
                             onOpenDecisionModal = { outcome ->
                                 decisionOutcomeToReview = outcome
                                 isDecisionModalOpen = true
-                            }
+                            },
+                            onNavigateToNewSop = { activeScreen = ActiveScreen.NEW_SOP }
                         )
 
                         ActiveScreen.AGENTS_TRACKER -> AgentsTrackerScreen(
                             agents = agentsList,
-                            onBackClick = { activeScreen = ActiveScreen.MAIN_TABS }
+                            onBackClick = { activeScreen = ActiveScreen.MAIN_TABS },
+                            onUpdateAgentStatus = { code, status -> repository.updateAgentStatus(code, status) }
                         )
 
                         ActiveScreen.EXECUTIVE_DASHBOARD -> DashboardScreen(
                             numbers = executiveNumbers,
                             financial = financialHealth,
-                            onBackClick = { activeScreen = ActiveScreen.MAIN_TABS }
+                            onBackClick = { activeScreen = ActiveScreen.MAIN_TABS },
+                            onSetRealizationCoeff = { repository.setRealizationCoefficient(it) },
+                            onToggleHaltConditions = { rising, dropping -> repository.updateOrderHaltConditions(rising, dropping) }
                         )
                     }
 

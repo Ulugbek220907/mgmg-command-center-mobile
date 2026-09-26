@@ -183,4 +183,107 @@ class CommandCenterTest {
         repository.logout()
         assertFalse(repository.isLoggedIn.value)
     }
+
+    @Test
+    fun testIosSmartPunctuationApostrophesAndTransliteration() {
+        // iOS smart punctuation right curly apostrophe ’ (\u2019)
+        val iosCurlyO = "O’rinbosar xodim"
+        val cyrillicCurlyO = repository.convertToCyrillicLegal(iosCurlyO)
+        assertTrue(cyrillicCurlyO.contains("Ўринбосар"), "iOS curly apostrophe O’ should become Ў")
+
+        val iosCurlyG = "g’olib bo‘lim"
+        val cyrillicCurlyG = repository.convertToCyrillicLegal(iosCurlyG)
+        assertTrue(cyrillicCurlyG.contains("ғолиб"), "iOS curly apostrophe g’ should become ғ")
+
+        // Left curly quote ‘ (\u2018)
+        val leftQuoteText = "O‘zbekiston Respublikasi"
+        val cyrillicLeftQuote = repository.convertToCyrillicLegal(leftQuoteText)
+        assertTrue(cyrillicLeftQuote.contains("Ўзбекистон"), "Left quote O‘ should become Ў")
+
+        // Official turned comma ʻ (\u02BB)
+        val turnedCommaText = "oʻgʻli va qizi"
+        val cyrillicTurnedComma = repository.convertToCyrillicLegal(turnedCommaText)
+        assertTrue(cyrillicTurnedComma.contains("ўғли"), "Turned comma oʻgʻli should become ўғли")
+
+        // Modifier apostrophe ʼ (\u02BC)
+        val modifierAposText = "gʼolib"
+        val cyrillicModifierApos = repository.convertToCyrillicLegal(modifierAposText)
+        assertTrue(cyrillicModifierApos.contains("ғолиб"), "Modifier apostrophe gʼ should become ғ")
+
+        // Ye and Ts rules
+        val yeText = "yevropa"
+        val cyrillicYe = repository.convertToCyrillicLegal(yeText)
+        assertTrue(cyrillicYe.contains("европа"), "ye should become е")
+    }
+
+    @Test
+    fun testOrderHaltConditionsDynamicToggle() {
+        // Initial state in repository: isStockRising = false, isCashDropping = false -> alert is inactive
+        assertFalse(repository.executiveNumbers.value.isOrderHaltAlertActive, "Initially halt alert must be inactive")
+
+        // Enable both conditions -> alert must activate
+        repository.updateOrderHaltConditions(isStockRising = true, isCashDropping = true)
+        assertTrue(repository.executiveNumbers.value.isOrderHaltAlertActive, "Alert must activate when stock rising and cash dropping")
+
+        // When cash is NOT dropping, halt rule must NOT fire
+        repository.updateOrderHaltConditions(isStockRising = true, isCashDropping = false)
+        assertFalse(repository.executiveNumbers.value.isOrderHaltAlertActive, "Alert should be false if cash is not dropping")
+
+        // When stock is NOT rising, halt rule must NOT fire
+        repository.updateOrderHaltConditions(isStockRising = false, isCashDropping = true)
+        assertFalse(repository.executiveNumbers.value.isOrderHaltAlertActive, "Alert should be false if stock is not rising")
+
+        // When both are false, halt rule must NOT fire
+        repository.updateOrderHaltConditions(isStockRising = false, isCashDropping = false)
+        assertFalse(repository.executiveNumbers.value.isOrderHaltAlertActive, "Alert should be false when both conditions false")
+
+        // Re-enable both -> alert must reactivate immediately
+        repository.updateOrderHaltConditions(isStockRising = true, isCashDropping = true)
+        assertTrue(repository.executiveNumbers.value.isOrderHaltAlertActive, "Alert must reactivate when both conditions true")
+    }
+
+    @Test
+    fun testRealizationCoefficientDynamicUpdate() {
+        // Default coeff 0.5
+        assertEquals(0.5, repository.financialHealth.value.realizationCoeff)
+        assertEquals(74_000.0, repository.financialHealth.value.realAnnualGainUsd)
+
+        // Update to 0.8
+        repository.setRealizationCoefficient(0.8)
+        val updatedFin = repository.financialHealth.value
+        assertEquals(0.8, updatedFin.realizationCoeff)
+        assertEquals(118_400.0, updatedFin.realAnnualGainUsd)
+        assertEquals(111_320.0, updatedFin.netAnnualProfitImprovementUsd)
+        assertTrue(updatedFin.roiMultiplier > 15.7 && updatedFin.roiMultiplier < 15.8)
+
+        // Reset to 0.5
+        repository.setRealizationCoefficient(0.5)
+        assertEquals(0.5, repository.financialHealth.value.realizationCoeff)
+    }
+
+    @Test
+    fun testMultipleSopRequestsSequence() {
+        // Initial default SOP
+        val firstSop = repository.currentSopRequest.value
+        assertEquals(SopStatus.PENDING, firstSop.status)
+
+        // Approve first SOP
+        repository.recordDirectorDecision(DirectorOutcome.APPROVE, "Ruxsat berildi")
+        assertEquals(SopStatus.APPROVED, repository.currentSopRequest.value.status)
+        assertNotNull(repository.currentSopRequest.value.decision)
+
+        // Create new SOP -> must replace current, reset status to PENDING, decision to null
+        val secondSop = repository.createSopRequest(
+            category = SopCategory.FINANCIAL_EXPENSE,
+            reason = "Yangi mahsulot uchun B2B reklama kampaniyasiga bannerlar buyurtma qilish",
+            substitutePerson = "Alisher Qodirov",
+            datesRange = "01-iyun - 05-iyun, 2024",
+            expenseLimit = "5,000,000 UZS"
+        )
+        val current = repository.currentSopRequest.value
+        assertEquals(secondSop.id, current.id)
+        assertEquals(SopCategory.FINANCIAL_EXPENSE, current.category)
+        assertEquals(SopStatus.PENDING, current.status)
+        assertNull(current.decision, "New SOP must not carry over previous decision")
+    }
 }
